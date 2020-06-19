@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorBar from "../../shared/UI/ErrorBar";
@@ -30,6 +31,7 @@ const NewProfile = () => {
     setError(null);
   };
 
+  const history = useHistory();
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -48,6 +50,7 @@ const NewProfile = () => {
         throw new Error(response.message);
       }
       console.log(response);
+      // history.push('/')
     } catch (err) {
       console.log(err);
 

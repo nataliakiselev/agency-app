@@ -10,7 +10,9 @@ const List = (props) => {
       <div className="place-list center">
         <Card>
           <h2> No profiles found. Create one?</h2>
-          <button>Create Profile</button>
+          <Link to="/profiles/new">
+            <button>Create Profile</button>
+          </Link>
         </Card>
       </div>
     );

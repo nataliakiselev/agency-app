@@ -48,6 +48,7 @@ const Auth = () => {
           method: "POST",
           body: JSON.stringify(data),
         });
+
         const resJson = await response.json();
 
         if (!response.ok) {
@@ -74,11 +75,13 @@ const Auth = () => {
           method: "POST",
           body: JSON.stringify(data),
         });
+
         const resJson = await response.json();
 
         if (!response.ok) {
           throw new Error(resJson.message);
         }
+
         console.log(resJson);
         setIsLoading(false);
         auth.login();

@@ -14,12 +14,6 @@ const useStyles = makeStyles((theme) => ({
 export default function LoadingSpinner() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-  // const handleToggle = () => {
-  //   setOpen(!open);
-  // };
 
   return (
     <div>

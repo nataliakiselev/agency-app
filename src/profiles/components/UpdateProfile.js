@@ -42,10 +42,7 @@ const UpdateProfile = ({ props }, handleCancel) => {
   return (
     <form
       className={classes.root}
-      noValidate
-      autoComplete="off"
-      action="/profiles/:profileId"
-      method="PUT"
+
       // onSubmit={submitHandler}
     >
       <TextField
@@ -116,7 +113,7 @@ const UpdateProfile = ({ props }, handleCancel) => {
       />
       <div>
         <input
-          accept="image/*"
+          // accept="image/*"
           className={classes.input}
           id="contained-button-file"
           type="file"
@@ -159,30 +156,3 @@ const UpdateProfile = ({ props }, handleCancel) => {
 };
 
 export default UpdateProfile;
-
-/* <form>
-      <Input
-        id="firstName"
-        element="input"
-        type="text"
-        label="First Name"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid title."
-        onInput={() => {}}
-        value={identifiedProfile.firstName}
-        valid={true}
-      />
-      <Input
-        id="lastName"
-        element="textarea"
-        label="Notes"
-        validators={[VALIDATOR_MINLENGTH(5)]}
-        errorText="Please enter a valid description (min. 5 characters)."
-        onInput={() => {}}
-        value={identifiedProfile.lastName}
-        valid={true}
-      />
-      <Button type="submit" disabled={true}>
-        UPDATE PROFILE
-      </Button>
-    </form> */
