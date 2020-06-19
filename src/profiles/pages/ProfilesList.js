@@ -1,12 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-
-// import "./ProfilesList.css";
 import List from "../components/List";
-// import Profile from "../components/Profile";
-// import Form from "../components/profiles/Form";
-// import ErrorBoundary from "./ErrorBoundary";
 
 const DUMMY_PROFILES = [
   {

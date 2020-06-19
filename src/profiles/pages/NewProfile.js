@@ -80,6 +80,20 @@ const NewProfile = () => {
           variant="outlined"
           required
         />
+        <TextField
+          id="eyes"
+          name="eyes"
+          label="Eyes"
+          variant="outlined"
+          required
+        />
+        <TextField
+          id="hair"
+          name="hair"
+          label="Hair"
+          variant="outlined"
+          required
+        />
 
         <TextField
           id="height"
@@ -122,6 +136,7 @@ const NewProfile = () => {
           variant="outlined"
           required
         />
+
         <TextField
           id="email"
           name="email"

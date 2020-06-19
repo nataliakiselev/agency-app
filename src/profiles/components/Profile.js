@@ -25,6 +25,10 @@ const Profile = ({ props }) => {
           <dd>{props.hips} cm</dd>
           <dt>Shoes</dt>
           <dd>{props.shoeSize}</dd>
+          <dt>Hair</dt>
+          <dd>{props.hair}</dd>
+          <dt>Eyes</dt>
+          <dd>{props.eyes}</dd>
           <dt>Agent</dt>
           <dd>{props.agent}</dd>
           {auth.isLoggedIn && (
