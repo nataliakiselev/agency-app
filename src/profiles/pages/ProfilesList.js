@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import List from "../components/List";
+import ErrorBar from "../../shared/UI/ErrorBar";
+import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
 const DUMMY_PROFILES = [
   {
@@ -44,8 +46,38 @@ const DUMMY_PROFILES = [
 
 const ProfilesList = () => {
   const userId = useParams().userId;
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+  const [loadedProfiles, setLoadedProfiles] = useState();
 
-  const loadedProfiles = DUMMY_PROFILES.filter((item) => item.agent === userId);
+  const clearError = () => {
+    setError(null);
+  };
+
+  useEffect(() => {
+    const doFetch = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `http://localhost:4000/api/profiles/user/${userId}`,
+        );
+        const resJson = await response.json();
+        if (!response.ok) {
+          throw new Error(resJson.message);
+        }
+        console.log(resJson);
+        setLoadedProfiles(resJson.data);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+        setIsLoading(false);
+        setError(err.message);
+      }
+    };
+    doFetch();
+  }, [userId]);
+
+  // const loadedProfiles = DUMMY_PROFILES.filter((item) => item.agent === userId);
 
   console.log(loadedProfiles);
   return <List profiles={loadedProfiles} />;
@@ -92,39 +124,6 @@ const ProfilesList = () => {
   // };
 
   // render() {
-  //   return (
-  //     <div className="App">
-  //       {/* <div className="row">
-  //         <div className="col s12"> */}
-  //       <nav>
-  //         <div className="nav-wrapper  white">
-  //           <a href="/" className="brand-logo left black">
-  //             STORM
-  //           </a>
-  //         </div>
-  //       </nav>
-  //       {/* </div>
-  //       </div> */}
-  //       <div class="container">
-  //         <div className="row">
-  //           <div className="col s12">
-  //             <ProfilesList
-  //               profiles={this.state.profiles}
-  //               updateCurrentProfile={this.updateCurrentProfile}
-  //             />
-  //           </div>
-  //           {/* <div className="col s9">
-  //           <Profile profile={this.state.currentProfile} />
-  //         </div> */}
-  //         </div>
-  //         <div className="row">
-  //           <div className="col s12">
-  //             <Form />
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
   // }
 };
 

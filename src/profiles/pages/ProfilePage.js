@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import Card from "../../shared/UI/Card";
 import Button from "../../shared/FormElements/Button";
 import Profile from "../components/Profile";
 import UpdateProfile from "../components/UpdateProfile";
@@ -26,8 +25,6 @@ const DUMMY_PROFILES = [
     email: "linda.cara@gmail.com",
     phone: 7588442244,
     agent: "u1",
-    avatar:
-      "https://r.search.yahoo.com/_ylt=AwrJ7B0ZjedeKfsAbsX.3olQ;_ylu=X3oDMTBpcGszamw0BHNlYwNmcC1pbWcEc2xrA2ltZw--/RV=2/RE=1592262041/RO=11/RU=https%3a%2f%2fwallpapersite.com%2fimages%2fwallpapers%2fgigi-hadid-1440x2560-fashion-model-hd-11260.jpg/RK=2/RS=xIGnMETOMA3T9y8jussyfTqbC7U-",
   },
   {
     id: "v2",
