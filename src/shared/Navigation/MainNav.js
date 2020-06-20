@@ -1,42 +1,75 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./MainNav.css";
-import MainHeader from "./MainHeader";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import Drawer from "@material-ui/core/Drawer";
+import { makeStyles } from "@material-ui/core/styles";
+import MenuIcon from "@material-ui/icons/Menu";
+
 import NavLinks from "./NavLinks";
-import SideDrawer from "./SideDrawer";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  title: {
+    flexGrow: 1,
+  },
+  list: {
+    width: 250,
+  },
+  nav: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+}));
 
 const MainNav = (props) => {
-  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-  const toggleDrawerHandler = () => {
-    drawerIsOpen ? setDrawerIsOpen(false) : setDrawerIsOpen(true);
-  };
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
 
   return (
-    <React.Fragment>
-      {drawerIsOpen && (
-        <SideDrawer show={drawerIsOpen} onClick={toggleDrawerHandler}>
-          <nav className="main-navigation__drawer-nav">
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
+          <div
+            className={classes.list}
+            role="presentation"
+            onClick={() => setOpen(false)}
+            onKeyDown={() => setOpen(false)}
+          >
             <NavLinks />
-          </nav>
-        </SideDrawer>
-      )}
-      <MainHeader>
-        <button
-          className="main-navigation__menu-btn"
-          onClick={toggleDrawerHandler}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-        <h1 className="main-navigation__title">
-          <Link to="/">Talent Management</Link>
-        </h1>
-        <nav className="main-navigation__header-nav">
-          <NavLinks />
-        </nav>
-      </MainHeader>
-    </React.Fragment>
+          </div>
+        </Drawer>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={() => setOpen(!open)}
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <Typography className={classes.title} variant="h5" noWrap>
+            <Link to="/">TALENT MANAGEMENT</Link>
+          </Typography>
+          <div className={classes.nav}>
+            <NavLinks />
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 };
 
