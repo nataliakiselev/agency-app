@@ -5,10 +5,11 @@ import { List, ListItem, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2),
+  button: {
+    color: "inherit",
+    margin: theme.spacing(1),
   },
-  nav: {
+  root: {
     display: "flex",
     listStyle: "none",
     flexDirection: "column",
@@ -16,10 +17,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     [theme.breakpoints.up("md")]: {
       flexDirection: "row",
-      margin: "0 O.O5rem",
-      flexGrow: "1",
       justifyContent: "center",
-      alignItems: "center",
     },
   },
 }));
@@ -27,13 +25,13 @@ const NavLinks = (props) => {
   const auth = useContext(AuthContext);
   const classes = useStyles();
   return (
-    <List className={classes.nav}>
-      <ListItem>
+    <List className={classes.root}>
+      <ListItem button>
         <NavLink to="/" exact>
           TALENT
         </NavLink>
       </ListItem>
-      <ListItem>
+      <ListItem button>
         <NavLink to="/users" exact>
           AGENTS
         </NavLink>
@@ -51,49 +49,16 @@ const NavLinks = (props) => {
         </ListItem>
       )}
       {!auth.isLoggedIn && (
-        <ListItem>
+        <ListItem button>
           <NavLink to="/auth">LOG IN</NavLink>
         </ListItem>
       )}
       {auth.isLoggedIn && (
-        <ListItem button>
-          <Button onClick={auth.logout}>Logout</Button>
+        <ListItem button onClick={auth.logout}>
+          LOGOUT
         </ListItem>
       )}
     </List>
-    //     <ul className="nav-links">
-    //       <li>
-    //         <NavLink to="/" exact>
-    //           TALENT
-    //         </NavLink>
-    //       </li>
-    //       <li>
-    //         <NavLink to="/users" exact>
-    //           AGENTS
-    //         </NavLink>
-    //       </li>
-
-    //       {auth.isLoggedIn && (
-    //         <li>
-    //           <NavLink to="/u1/profiles">MY PROFILES</NavLink>
-    //         </li>
-    //       )}
-    //       {auth.isLoggedIn && (
-    //         <li>
-    //           <NavLink to="/profiles/new">ADD PROFILE</NavLink>
-    //         </li>
-    //       )}
-    //       {!auth.isLoggedIn && (
-    //         <li>
-    //           <NavLink to="/auth">LOG IN</NavLink>
-    //         </li>
-    //       )}
-    //       {auth.isLoggedIn && (
-    //         <li>
-    //           <Button onClick={auth.logout}>Logout</Button>
-    //         </li>
-    //       )}
-    //     </ul>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import Button from "../../shared/FormElements/Button";
+import { Button } from "@material-ui/core";
 import Profile from "../components/Profile";
 import UpdateProfile from "../components/UpdateProfile";
 import WarningModal from "../../shared/UI/WarningModal";
