@@ -63,10 +63,6 @@ const Auth = () => {
         setError(err.message || "Something went wrong");
       }
     } else {
-      // const data = Object.fromEntries(new FormData(e.target));
-      // console.log(e.target, "form");
-      // console.log(data, "data");
-
       try {
         const response = await fetch("http://localhost:4000/api/users/signup", {
           headers: {
