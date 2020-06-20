@@ -15,6 +15,7 @@ import Auth from "./user/pages/Auth";
 import { AuthContext } from "./shared/context/AuthContext";
 import ErrorBoundary from "./ErrorBoundary";
 import "./App.css";
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const login = useCallback(() => {
