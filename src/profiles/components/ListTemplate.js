@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListTemplate = (props) => {
+const ListTemplate = ({ profiles = [] }) => {
   const classes = useStyles();
 
-  if (props.profiles.length === 0) {
+  if (profiles.length === 0) {
     return (
       <div>
         <h2> No profiles found. Create one?</h2>
@@ -47,7 +47,7 @@ const ListTemplate = (props) => {
         {/* <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">Women Main</ListSubheader>
         </GridListTile> */}
-        {props.profiles.map((item) => (
+        {profiles.map((item) => (
           <GridListTile key={item.id}>
             <img src={item.mainImg} alt={item.name.first} />
 
