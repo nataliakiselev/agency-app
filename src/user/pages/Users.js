@@ -5,8 +5,8 @@ import ErrorBar from "../../shared/UI/ErrorBar";
 
 const Users = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
-  const [loadedUsers, setLoadedUsers] = useState();
+  const [error, setError] = useState(null);
+  const [loadedUsers, setLoadedUsers] = useState(null);
 
   const clearError = () => {
     setError(null);
