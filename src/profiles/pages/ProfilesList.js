@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import List from "../components/List";
+import ListTemplate from "../components/ListTemplate";
 import ErrorBar from "../../shared/UI/ErrorBar";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
@@ -80,7 +80,7 @@ const ProfilesList = () => {
   // const loadedProfiles = DUMMY_PROFILES.filter((item) => item.agent === userId);
 
   console.log(loadedProfiles);
-  return <List profiles={loadedProfiles} />;
+  return <ListTemplate profiles={loadedProfiles} />;
   // state = {
   //   profiles: [],
   //   currentProfile: {},

@@ -16,9 +16,9 @@ const DUMMY_PROFILES = [
       last: "Cara",
     },
 
-    height: "177 cm",
-    waist: "58 cm",
-    hips: "88 cm",
+    height: "177",
+    waist: "58 ",
+    hips: "88 ",
     shoeSize: "6",
     hairColour: "brown",
     eyeColour: "grey-blue",
@@ -82,8 +82,12 @@ const ProfilePage = () => {
             header="Are you sure?"
             footer={
               <React.Fragment>
-                <Button onClick={cancelDeleteHandler}>Cancel</Button>
-                <Button onClick={confirmDeleteHandler}>Delete</Button>
+                <Button variant="contained" onClick={cancelDeleteHandler}>
+                  Cancel
+                </Button>
+                <Button variant="contained" onClick={confirmDeleteHandler}>
+                  Delete
+                </Button>
               </React.Fragment>
             }
           />

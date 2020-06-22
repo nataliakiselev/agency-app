@@ -1,5 +1,5 @@
 import React from "react";
-import List from "../components/List";
+import ListTemplate from "../components/ListTemplate";
 
 const DUMMY_PROFILES = [
   {
@@ -42,7 +42,7 @@ const DUMMY_PROFILES = [
 ];
 
 const AllProfiles = () => {
-  return <List profiles={DUMMY_PROFILES} />;
+  return <ListTemplate profiles={DUMMY_PROFILES} />;
 };
 
 export default AllProfiles;
