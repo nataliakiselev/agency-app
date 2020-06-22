@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "../../shared/UI/Card";
@@ -23,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Auth = () => {
+const Auth = (props) => {
+  console.log(props);
   const auth = useContext(AuthContext);
+  let history = useHistory();
   const classes = useStyles();
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,9 +57,10 @@ const Auth = () => {
         if (!response.ok) {
           throw new Error(resJson.message);
         }
-        console.log(resJson);
+        console.log(resJson); // Should set this into state...
         setIsLoading(false);
-        auth.login();
+        auth.login(); // ...here
+        history.push("/");
       } catch (err) {
         console.log(err);
         setIsLoading(false);
@@ -122,6 +126,7 @@ const Auth = () => {
           type="email"
           label="Email"
           required
+          autoComplete="email"
         />
         <TextField
           variant="outlined"
@@ -130,6 +135,7 @@ const Auth = () => {
           type="password"
           label="Password"
           required
+          autoComplete="on"
         />
         <Button type="submit" variant="contained">
           {isLoginMode ? "Login" : "New Account"}
