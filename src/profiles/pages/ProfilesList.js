@@ -80,7 +80,7 @@ const ProfilesList = () => {
   // const loadedProfiles = DUMMY_PROFILES.filter((item) => item.agent === userId);
 
   console.log(loadedProfiles);
-  return <ListTemplate profiles={loadedProfiles} header={}/>;
+  return <ListTemplate profiles={loadedProfiles} />;
   // state = {
   //   profiles: [],
   //   currentProfile: {},
