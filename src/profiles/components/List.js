@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import Avatar from "../../shared/UI/Avatar";
 import Card from "../../shared/UI/Card";
 
-const List = (props) => {
-  if (props.profiles.length === 0) {
+const List = ({ profiles = [] }) => {
+  // console.log(props);
+  if (profiles.length === 0) {
     return (
       <div className="place-list center">
         <Card>
@@ -18,22 +19,24 @@ const List = (props) => {
     );
   }
   return (
-    <ul className="profiles-list">
+    <>
       <h2>Profiles</h2>
-      {props.profiles.map((item) => (
-        <Link
-          to={`/profiles/${item.id}`}
-          key={item.id}
-          id={item.id}
-          agent={item.agent}
-        >
-          <li>
-            <Avatar avatar={item.avatar} alt={item.name.first} />
-            <h3>{`${item.name.first} ${item.name.last}`} </h3>
+      <ul className="profiles-list">
+        {profiles.map((item) => (
+          <li key={item.id}>
+            <Link
+              to={`/profiles/${item.id}`}
+              key={item.id}
+              id={item.id}
+              agent={item.agent}
+            >
+              <Avatar avatar={item.avatar} alt={item.name.first} />
+              <h3>{`${item.name.first} ${item.name.last}`} </h3>
+            </Link>
           </li>
-        </Link>
-      ))}
-    </ul>
+        ))}
+      </ul>
+    </>
   );
 };
 
