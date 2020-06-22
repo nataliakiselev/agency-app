@@ -34,14 +34,15 @@ const NewProfile = () => {
   const history = useHistory();
   const submitHandler = async (e) => {
     e.preventDefault();
+    e.persist();
     try {
       const data = new FormData(e.target);
       console.log(e.target, "form");
-      console.log(data, "data");
+      console.log(Object.fromEntries(data), "data");
 
       const response = await fetch("http://localhost:4000/api/profiles", {
         headers: {
-          "Content-Type": "multipart/form-data",
+          // "Content-Type": "multipart/form-data",
         },
         method: "POST",
         body: data,
