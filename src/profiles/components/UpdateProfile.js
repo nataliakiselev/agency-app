@@ -117,7 +117,7 @@ const UpdateProfile = ({ props }, handleCancel) => {
           className={classes.input}
           id="contained-button-file"
           type="file"
-          name="avatar"
+          name="mainImg"
           required
         />
 

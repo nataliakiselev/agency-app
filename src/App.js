@@ -16,14 +16,19 @@ import { AuthContext } from "./shared/context/AuthContext";
 import ErrorBoundary from "./ErrorBoundary";
 import ProtectedRoute from "./ProtectedRoute";
 import "./App.css";
+import { useMediaQuery } from "@material-ui/core";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const login = useCallback(() => {
+  const [userId, setUserId] = useState(null);
+  const login = useCallback((uid) => {
     setIsLoggedIn(true);
+    setUserId(uid);
   }, []);
-  const logout = useCallback(() => {
+
+  const logout = useCallback((uid) => {
     setIsLoggedIn(false);
+    setUserId(null);
   }, []);
 
   let routes = (
@@ -40,49 +45,22 @@ const App = () => {
       <ProtectedRoute exact isAuthedUser={isLoggedIn} path="/profiles/new">
         <NewProfile />
       </ProtectedRoute>
+
       <Route path="/profiles/:profileId">
         <ProfilePage />
       </Route>
+
       <Route path="/auth">
         <Auth />
       </Route>
-      <Redirect to="/" />
+      <Redirect to="/auth" />
     </Switch>
   );
-  // } else {
-  //   routes = (
-  //     <Switch>
-  //       <Route exact path="/">
-  //         <AllProfiles />
-  //       </Route>
-  //       <Route exact path="/users">
-  //         <Users />
-  //       </Route>
-  //       <Route exact path="/:userId/profiles">
-  //         <ProfilesList />
-  //       </Route>
-  //       {/* <Route exact path="/profiles/:new">
-  //         <Auth />
-  //       </Route> */}
-  //       <Route exact path="/profiles/:profileId">
-  //         <ProfilePage />
-  //       </Route>
-
-  //       <Route path="/auth">
-  //         <Auth />
-  //       </Route>
-
-  //       <Redirect to="/auth" />
-  //     </Switch>
-  //   );
-  // }
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, userId, login, logout }}>
       <Router>
         <MainNav />
-        <main>
-          <ErrorBoundary>{routes}</ErrorBoundary>
-        </main>
+        <main>{routes}</main>
       </Router>
     </AuthContext.Provider>
   );

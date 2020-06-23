@@ -59,7 +59,8 @@ const Auth = (props) => {
         }
         console.log(resJson); // Should set this into state...
         setIsLoading(false);
-        auth.login(); // ...here
+
+        auth.login(resJson.user._id); // ...here
         history.push("/");
       } catch (err) {
         console.log(err);
@@ -84,7 +85,7 @@ const Auth = (props) => {
 
         console.log(resJson);
         setIsLoading(false);
-        auth.login();
+        auth.login(resJson.user._id);
       } catch (err) {
         console.log(err);
         setIsLoading(false);

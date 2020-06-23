@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorBar from "../../shared/UI/ErrorBar";
-
+import { AuthContext } from "../../shared/context/AuthContext";
 import "./NewProfile.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 const NewProfile = () => {
   const classes = useStyles();
 
+  const auth = useContext(AuthContext);
   const [error, setError] = useState();
 
   const clearError = () => {
@@ -37,13 +38,11 @@ const NewProfile = () => {
     e.persist();
     try {
       const data = new FormData(e.target);
+      data.append("agent", auth.userId);
       console.log(e.target, "form");
       console.log(Object.fromEntries(data), "data");
 
       const response = await fetch("http://localhost:4000/api/profiles", {
-        headers: {
-          // "Content-Type": "multipart/form-data",
-        },
         method: "POST",
         body: data,
       });
@@ -178,7 +177,7 @@ const NewProfile = () => {
             className={classes.input}
             id="contained-button-file"
             type="file"
-            name="avatar"
+            name="mainImg"
             required
           />
 
