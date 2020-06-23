@@ -23,12 +23,12 @@ const Users = () => {
         }
         console.log(resJson);
         setLoadedUsers(resJson.data);
-        setIsLoading(false);
       } catch (err) {
         console.log(err);
-        setIsLoading(false);
+
         setError(err.message);
       }
+      setIsLoading(false);
     };
     doFetch();
   }, []);

@@ -1,5 +1,4 @@
 import React from "react";
-// import "./List.css";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
@@ -15,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: "100%",
-    height: "100%",
+    width: 500,
+    height: 450,
   },
   title: {
     color: theme.palette.primary.light,
@@ -43,12 +42,12 @@ const ListTemplate = ({ profiles = [] }) => {
 
   return (
     <div className={classes.root}>
-      <GridList spacing={2} className={classes.gridList}>
+      <GridList cellHeight={180} className={classes.gridList}>
         {/* <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">Women Main</ListSubheader>
         </GridListTile> */}
         {profiles.map((item) => (
-          <GridListTile key={item.id}>
+          <GridListTile key={item._id}>
             <img src={item.mainImg} alt={item.name.first} />
 
             <Link to={`/profiles/${item.id}`} id={item.id} agent={item.agent}>

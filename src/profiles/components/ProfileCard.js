@@ -52,7 +52,7 @@ const ProfileCard = ({ props }) => {
             <dt>Hips</dt>
             <dd>{props.hips} cm</dd>
             <dt>Shoes</dt>
-            <dd>{props.shoeSize}</dd>
+            <dd>{props.shoes}</dd>
             <dt>Hair</dt>
             <dd>{props.hair}</dd>
             <dt>Eyes</dt>

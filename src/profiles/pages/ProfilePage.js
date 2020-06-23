@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import Profile from "../components/Profile";
@@ -6,61 +6,55 @@ import UpdateProfile from "../components/UpdateProfile";
 import WarningModal from "../../shared/UI/WarningModal";
 import { AuthContext } from "../../shared/context/AuthContext";
 import "../components/Profile.css";
-import { useContext } from "react";
-
-const DUMMY_PROFILES = [
-  {
-    id: "v1",
-    name: {
-      first: "Linda",
-      last: "Cara",
-    },
-
-    height: "177",
-    waist: "58 ",
-    hips: "88 ",
-    shoeSize: "6",
-    hairColour: "brown",
-    eyeColour: "grey-blue",
-    email: "linda.cara@gmail.com",
-    phone: 7588442244,
-    agent: "u1",
-  },
-  {
-    id: "v2",
-    name: {
-      first: "Vanda",
-      last: "Pawlowska",
-    },
-
-    height: "179 cm",
-    waist: "60 cm",
-    hips: "89 cm",
-    shoeSize: "7",
-    hairColour: "blonde",
-    eyeColour: "green",
-    email: "v.pawlowska@me.com",
-    phone: 7788555555,
-    agent: "u1",
-  },
-];
+import ErrorBar from "../../shared/UI/ErrorBar";
+import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
 const ProfilePage = () => {
   const auth = useContext(AuthContext);
   const profileId = useParams().profileId;
-
-  const identifiedProfile = DUMMY_PROFILES.find((p) => p.id === profileId);
-  // console.log(profileId);
-  // console.log(identifiedProfile);
-
-  const [viewMode, setViewMode] = useState(true);
-
-  const handleUpdate = () => {
-    setViewMode(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [profile, setProfile] = useState();
+  const clearError = () => {
+    setError(null);
   };
-  const handleCancel = () => {
-    setViewMode(true);
-  };
+
+  useEffect(() => {
+    const doFetch = async () => {
+      setError(null);
+      setIsLoading(true);
+      try {
+        console.log(profileId, "profileId");
+        console.log("calling");
+        const response = await fetch(
+          `http://localhost:4000/api/profiles/${profileId}`,
+        );
+
+        console.log(response);
+
+        const resJson = await response.json();
+        if (!response.ok) {
+          throw new Error(resJson.message);
+        }
+        console.log(resJson);
+        setProfile(resJson.data);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        setError(err.message);
+      }
+    };
+    doFetch();
+  }, [profileId]);
+
+  // const [viewMode, setViewMode] = useState(true);
+
+  // const handleUpdate = () => {
+  //   setViewMode(false);
+  // };
+  // const handleCancel = () => {
+  //   setViewMode(true);
+  // };
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const showWarningHandler = () => {
     setShowConfirmModal(true);
@@ -72,33 +66,39 @@ const ProfilePage = () => {
   const cancelDeleteHandler = () => {
     setShowConfirmModal(false);
   };
+
   return (
     <div>
-      {viewMode ? (
-        <React.Fragment>
-          <WarningModal
-            open={showConfirmModal}
-            onClose={cancelDeleteHandler}
-            header="Are you sure?"
-            footer={
-              <React.Fragment>
-                <Button variant="contained" onClick={cancelDeleteHandler}>
-                  Cancel
-                </Button>
-                <Button variant="contained" onClick={confirmDeleteHandler}>
-                  Delete
-                </Button>
-              </React.Fragment>
-            }
-          />
-          <Profile props={identifiedProfile} />
-        </React.Fragment>
-      ) : (
-        <UpdateProfile props={(identifiedProfile, { onClick: handleCancel })} />
-      )}
+      {isLoading && <LoadingSpinner />}
+      <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      {/* {viewMode ? ( */}
+      <React.Fragment>
+        <WarningModal
+          open={showConfirmModal}
+          onClose={cancelDeleteHandler}
+          header="Are you sure?"
+          footer={
+            <React.Fragment>
+              <Button variant="contained" onClick={cancelDeleteHandler}>
+                Cancel
+              </Button>
+              <Button variant="contained" onClick={confirmDeleteHandler}>
+                Delete
+              </Button>
+            </React.Fragment>
+          }
+        />
+
+        <Profile profile={profile} />
+      </React.Fragment>
+      {/* ) : (
+        <UpdateProfile
+          props={( {identifiedProfile}, { onClick: handleCancel })}
+        />
+      )} */}
       {auth.isLoggedIn && (
         <div className="profile-item__actions">
-          <Button onClick={handleUpdate}>Edit</Button>
+          <Button>Edit</Button>
           <Button danger onClick={showWarningHandler}>
             Delete
           </Button>
