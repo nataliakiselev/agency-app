@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfileCard = ({ props }) => {
+const ProfileCard = (profile) => {
   const classes = useStyles();
 
   const auth = useContext(AuthContext);
@@ -41,33 +41,33 @@ const ProfileCard = ({ props }) => {
     <Card className={classes.root}>
       <div className={classes.details}>
         <Typography component="h5" variant="h5">
-          {props.name.first} {props.name.last}
+          {profile.name.first} {profile.name.last}
         </Typography>
         <CardContent className={classes.content}>
           <dl>
             <dt>Height</dt>
-            <dd>{props.height} cm</dd>
+            <dd>{profile.height} cm</dd>
             <dt>Waist</dt>
-            <dd>{props.waist} cm</dd>
+            <dd>{profile.waist} cm</dd>
             <dt>Hips</dt>
-            <dd>{props.hips} cm</dd>
+            <dd>{profile.hips} cm</dd>
             <dt>Shoes</dt>
-            <dd>{props.shoes}</dd>
+            <dd>{profile.shoes}</dd>
             <dt>Hair</dt>
-            <dd>{props.hair}</dd>
+            <dd>{profile.hair}</dd>
             <dt>Eyes</dt>
-            <dd>{props.eyes}</dd>
+            <dd>{profile.eyes}</dd>
             <dt>Agent</dt>
-            <dd>{props.agent}</dd>
+            <dd>{profile.agent}</dd>
             {auth.isLoggedIn && (
               <dl>
                 <dt>Email</dt>
-                <dd>{props.email}</dd>
+                <dd>{profile.email}</dd>
                 <dt>Phone</dt>
-                <dd>{props.phone}</dd>
+                <dd>{profile.phone}</dd>
 
                 <dt>Notes</dt>
-                <dd>{props.notes}</dd>
+                <dd>{profile.notes}</dd>
               </dl>
             )}
           </dl>
@@ -75,8 +75,8 @@ const ProfileCard = ({ props }) => {
       </div>
       <CardMedia
         className={classes.cover}
-        src={`http://localhost:4000/${props.mainImg}`} //specify height?
-        alt={props.name.first}
+        src={`http://localhost:4000/${profile.mainImg}`} //specify height?
+        alt={profile.name}
         title="Live from space album cover"
       />
       {auth.isLoggedIn && (

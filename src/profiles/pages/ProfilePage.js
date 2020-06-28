@@ -14,7 +14,7 @@ const ProfilePage = () => {
   const profileId = useParams().profileId;
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [profile, setProfile] = useState();
+  const [loadedProfile, setLoadedProfile] = useState();
   const clearError = () => {
     setError(null);
   };
@@ -37,7 +37,7 @@ const ProfilePage = () => {
           throw new Error(resJson.message);
         }
         console.log(resJson);
-        setProfile(resJson.data);
+        setLoadedProfile(resJson.data);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -88,8 +88,7 @@ const ProfilePage = () => {
             </React.Fragment>
           }
         />
-
-        <Profile profile={profile} />
+        {!isLoading && loadedProfile && <Profile profile={loadedProfile} />}
       </React.Fragment>
       {/* ) : (
         <UpdateProfile
