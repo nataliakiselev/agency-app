@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const ListTemplate = ({ profiles = [] }) => {
   const classes = useStyles();
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     return (
       <div>
         <h2> No profiles found. Create one?</h2>
@@ -50,7 +50,7 @@ const ListTemplate = ({ profiles = [] }) => {
           <GridListTile key={item._id}>
             <img src={item.mainImg} alt={item.name.first} />
 
-            <Link to={`/profiles/${item.id}`} id={item.id} agent={item.agent}>
+            <Link to={`/profiles/${item._id}`} id={item._id} agent={item.agent}>
               <GridListTileBar
                 title={`${item.name.first} ${item.name.last}`}
                 classes={{

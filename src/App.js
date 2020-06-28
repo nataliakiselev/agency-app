@@ -45,11 +45,11 @@ const App = () => {
       <ProtectedRoute exact isAuthedUser={isLoggedIn} path="/profiles/new">
         <NewProfile />
       </ProtectedRoute>
-
-      <Route path="/profiles/:profileId">
-        <ProfilePage />
-      </Route>
-
+      <ErrorBoundary>
+        <Route path="/profiles/:profileId">
+          <ProfilePage />
+        </Route>
+      </ErrorBoundary>
       <Route path="/auth">
         <Auth />
       </Route>

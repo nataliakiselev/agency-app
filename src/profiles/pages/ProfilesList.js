@@ -18,7 +18,6 @@ const ProfilesList = () => {
     const doFetch = async () => {
       setIsLoading(true);
       try {
-      
         const response = await fetch(
           `http://localhost:4000/api/profiles/user/${userId}`,
         );
@@ -38,12 +37,14 @@ const ProfilesList = () => {
       }
     };
     doFetch();
-  }, [userId]);
+  }, []);
 
   return (
     <>
       {isLoading && <LoadingSpinner />}
-      <ListTemplate profiles={loadedProfiles} />
+      {!isLoading && loadedProfiles && (
+        <ListTemplate profiles={loadedProfiles} />
+      )}
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </>
   );

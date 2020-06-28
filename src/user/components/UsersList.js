@@ -4,7 +4,7 @@ import Card from "../../shared/UI/Card";
 import "./UsersList.css";
 
 const UsersList = (props) => {
-  if (props.items.length === 0) {
+  if (!props.items.length) {
     return (
       <Card className="center">
         <h2>No users found</h2>
