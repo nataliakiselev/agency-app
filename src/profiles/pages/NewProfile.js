@@ -36,8 +36,9 @@ const NewProfile = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     e.persist();
+    const form = e.target;
     try {
-      const data = new FormData(e.target);
+      const data = new FormData(form);
       data.append("agent", auth.userId);
       console.log(e.target, "form");
       console.log(Object.fromEntries(data), "data");
@@ -50,12 +51,13 @@ const NewProfile = () => {
         throw new Error(response.message);
       }
       console.log(response);
-      // history.push('/')
+      history.push("/");
     } catch (err) {
       console.log(err);
 
       setError(err.message || "Something went wrong");
     }
+    form.reset();
   };
 
   return (
@@ -63,8 +65,6 @@ const NewProfile = () => {
       <form
         encType="multipart/form-data"
         className={classes.root}
-        noValidate
-        autoComplete="off"
         action="/profiles"
         method="POST"
         onSubmit={submitHandler}
@@ -72,13 +72,13 @@ const NewProfile = () => {
         <TextField
           required
           id="firstName"
-          name="firstName"
+          name="name.first"
           label="First Name"
           variant="outlined"
         />
         <TextField
           id="lastName"
-          name="lastName"
+          name="name.last"
           label="Last Name"
           variant="outlined"
           required
@@ -152,7 +152,7 @@ const NewProfile = () => {
           id="phone"
           name="phone"
           label="Phone"
-          type="number"
+          type="tel"
           variant="outlined"
           required
         />
@@ -198,7 +198,6 @@ const NewProfile = () => {
           // color="secondary"
           size="large"
           className={classes.button}
-          // onClick={(e) => props.onSubmit(e)}
         >
           Create Profile
         </Button>

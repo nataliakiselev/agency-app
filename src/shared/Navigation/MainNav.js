@@ -62,7 +62,7 @@ const MainNav = (props) => {
           </IconButton>
 
           <Typography className={classes.title} variant="h5" noWrap>
-            <Link to="/">TALENT MANAGEMENT</Link>
+            <Link to="/">IMG MANAGEMENT</Link>
           </Typography>
           <div className={classes.nav}>
             <NavLinks />

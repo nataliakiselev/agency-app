@@ -47,6 +47,8 @@ const ProfileCard = (profile) => {
           <dl>
             <dt>Height</dt>
             <dd>{profile.height} cm</dd>
+            <dt>Bust</dt>
+            <dd>{profile.bust} cm</dd>
             <dt>Waist</dt>
             <dd>{profile.waist} cm</dd>
             <dt>Hips</dt>
@@ -57,8 +59,7 @@ const ProfileCard = (profile) => {
             <dd>{profile.hair}</dd>
             <dt>Eyes</dt>
             <dd>{profile.eyes}</dd>
-            <dt>Agent</dt>
-            <dd>{profile.agent}</dd>
+
             {auth.isLoggedIn && (
               <dl>
                 <dt>Email</dt>

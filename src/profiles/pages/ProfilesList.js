@@ -7,7 +7,7 @@ import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 const ProfilesList = () => {
   const userId = useParams().userId;
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const [loadedProfiles, setLoadedProfiles] = useState();
 
   const clearError = () => {
@@ -37,7 +37,7 @@ const ProfilesList = () => {
       }
     };
     doFetch();
-  }, []);
+  }, [userId]);
 
   return (
     <>
