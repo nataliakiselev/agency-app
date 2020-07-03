@@ -25,13 +25,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Auth = (props) => {
+  const classes = useStyles();
   console.log(props);
   const auth = useContext(AuthContext);
   let history = useHistory();
-  const classes = useStyles();
+
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   const clearError = () => {
     setError(null);

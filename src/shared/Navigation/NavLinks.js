@@ -42,7 +42,7 @@ const NavLinks = (props) => {
       {auth.isLoggedIn && (
         <>
           <ListItem button>
-            <NavLink to="/u1/profiles">My Profiles</NavLink>
+            <NavLink to={`/${auth.userId}/profiles`}>My Profiles</NavLink>
           </ListItem>
           <ListItem button>
             <NavLink to="/profiles/new">Add Profile</NavLink>

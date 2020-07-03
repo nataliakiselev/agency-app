@@ -3,8 +3,8 @@ import User from "./User";
 import Card from "../../shared/UI/Card";
 import "./UsersList.css";
 
-const UsersList = (props) => {
-  if (!props.items.length) {
+const UsersList = ({ items }) => {
+  if (!items.length) {
     return (
       <Card className="center">
         <h2>No users found</h2>
@@ -13,13 +13,14 @@ const UsersList = (props) => {
   }
   return (
     <ul className="users-list">
-      {props.items.map((user) => (
+      {items.map((user) => (
         <User
           key={user._id}
           id={user._id}
           // image={user.image}
           name={user.name}
           description={user.location}
+          email={user.email}
         />
       ))}
     </ul>

@@ -45,11 +45,11 @@ const App = () => {
       <ProtectedRoute exact isAuthedUser={isLoggedIn} path="/profiles/new">
         <NewProfile />
       </ProtectedRoute>
-      <ErrorBoundary>
-        <Route path="/profiles/:profileId">
-          <ProfilePage />
-        </Route>
-      </ErrorBoundary>
+
+      <Route path="/profiles/:profileId">
+        <ProfilePage />
+      </Route>
+
       <Route path="/auth">
         <Auth />
       </Route>
@@ -57,7 +57,14 @@ const App = () => {
     </Switch>
   );
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userId, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+        userId: userId,
+        login: login,
+        logout: logout,
+      }}
+    >
       <Router>
         <MainNav />
         <main>{routes}</main>

@@ -47,14 +47,14 @@ const ProfilePage = () => {
     doFetch();
   }, [profileId]);
 
-  // const [viewMode, setViewMode] = useState(true);
+  const [viewMode, setViewMode] = useState(true);
 
-  // const handleUpdate = () => {
-  //   setViewMode(false);
-  // };
-  // const handleCancel = () => {
-  //   setViewMode(true);
-  // };
+  const handleUpdate = () => {
+    setViewMode(false);
+  };
+  const handleCancel = () => {
+    setViewMode(true);
+  };
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const showWarningHandler = () => {
     setShowConfirmModal(true);
@@ -71,36 +71,32 @@ const ProfilePage = () => {
     <div>
       {isLoading && <LoadingSpinner />}
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
-      {/* {viewMode ? ( */}
-      <React.Fragment>
-        <WarningModal
-          open={showConfirmModal}
-          onClose={cancelDeleteHandler}
-          header="Are you sure?"
-          footer={
-            <React.Fragment>
-              <Button variant="contained" onClick={cancelDeleteHandler}>
-                Cancel
-              </Button>
-              <Button variant="contained" onClick={confirmDeleteHandler}>
-                Delete
-              </Button>
-            </React.Fragment>
-          }
-        />
-        {!isLoading && loadedProfile && <Profile profile={loadedProfile} />}
-      </React.Fragment>
-      {/* ) : (
-        <UpdateProfile
-          props={( {identifiedProfile}, { onClick: handleCancel })}
-        />
-      )} */}
-      {auth.isLoggedIn && (
+      {viewMode ? (
+        <React.Fragment>
+          <WarningModal
+            open={showConfirmModal}
+            onClose={cancelDeleteHandler}
+            header="Are you sure?"
+            footer={
+              <React.Fragment>
+                <Button variant="contained" onClick={cancelDeleteHandler}>
+                  Cancel
+                </Button>
+                <Button variant="contained" onClick={confirmDeleteHandler}>
+                  Delete
+                </Button>
+              </React.Fragment>
+            }
+          />
+          {!isLoading && loadedProfile && <Profile profile={loadedProfile} />}
+        </React.Fragment>
+      ) : (
+        <UpdateProfile profile={loadedProfile} onClick={handleCancel} />
+      )}
+      {auth.isLoggedIn && viewMode && (
         <div className="profile-item__actions">
-          <Button>Edit</Button>
-          <Button danger onClick={showWarningHandler}>
-            Delete
-          </Button>
+          <Button onClick={handleUpdate}>Edit</Button>
+          <Button onClick={showWarningHandler}>Delete</Button>
         </div>
       )}
     </div>

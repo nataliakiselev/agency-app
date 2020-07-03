@@ -15,6 +15,7 @@ const User = (props) => {
           <div className="user-item__info">
             <h2>{props.name}</h2>
             <h3>{props.description}</h3>
+            <p>{props.email}</p>
           </div>
         </Link>
       </Card>
