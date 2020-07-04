@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import Profile from "../components/Profile";
@@ -15,6 +16,8 @@ const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [loadedProfile, setLoadedProfile] = useState();
+  const history = useHistory();
+
   const clearError = () => {
     setError(null);
   };
@@ -24,8 +27,6 @@ const ProfilePage = () => {
       setError(null);
       setIsLoading(true);
       try {
-        console.log(profileId, "profileId");
-        console.log("calling");
         const response = await fetch(
           `http://localhost:4000/api/profiles/${profileId}`,
         );
@@ -37,6 +38,7 @@ const ProfilePage = () => {
           throw new Error(resJson.message);
         }
         console.log(resJson);
+
         setLoadedProfile(resJson.data);
         setIsLoading(false);
       } catch (err) {
@@ -46,7 +48,8 @@ const ProfilePage = () => {
     };
     doFetch();
   }, [profileId]);
-
+  console.log("profile", loadedProfile);
+  // const { eyes, hair } = loadedProfile;
   const [viewMode, setViewMode] = useState(true);
 
   const handleUpdate = () => {
@@ -59,9 +62,28 @@ const ProfilePage = () => {
   const showWarningHandler = () => {
     setShowConfirmModal(true);
   };
-  const confirmDeleteHandler = () => {
-    console.log("deleting..");
-    //.....
+  const confirmDeleteHandler = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/profiles/${profileId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "DELETE",
+        },
+      );
+
+      console.log(response);
+      history.push(`/${auth.userId}/profiles`);
+      if (!response.ok) {
+        throw new Error(response.message);
+      }
+    } catch (err) {
+      console.log(err);
+
+      setError(err.message || "Something went wrong");
+    }
   };
   const cancelDeleteHandler = () => {
     setShowConfirmModal(false);
