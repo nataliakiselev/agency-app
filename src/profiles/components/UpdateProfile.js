@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateProfile = (props) => {
   const classes = useStyles();
-  const history = useHistory();
+
   const profile = props.profile;
 
   const initialState = {
@@ -186,7 +186,7 @@ const UpdateProfile = (props) => {
       </form>
       <div>
         <input
-          accept="image/*"
+          accept=".jpg,.jpeg,.png"
           className={classes.input}
           id="contained-button-file"
           type="file"

@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
     },
     width: "40%",
   },
+  input: {
+    display: "none",
+  },
 }));
 
 const ProfileCard = (profile) => {
@@ -76,15 +79,31 @@ const ProfileCard = (profile) => {
       </div>
       <CardMedia
         className={classes.cover}
-        src={`http://localhost:4000/${profile.mainImg}`} //specify height?
-        alt={profile.name}
+        image={`http://localhost:4000/${profile.mainImg}`} //specify height?
+        alt={profile.name.first}
         title="Live from space album cover"
       />
       {auth.isLoggedIn && (
         <CardActions>
-          <Button size="small" color="primary">
-            Add Photos
-          </Button>
+          <input
+            accept=".jpg,.jpeg,.png"
+            className={classes.input}
+            id="contained-button-file"
+            type="file"
+            name="mainImg"
+            // required
+          />
+
+          <label htmlFor="contained-button-file">
+            <Button
+              className={classes.button}
+              variant="outlined"
+              size="large"
+              component="span"
+            >
+              Add Photos
+            </Button>
+          </label>
         </CardActions>
       )}
     </Card>

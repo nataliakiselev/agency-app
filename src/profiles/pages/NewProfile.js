@@ -173,12 +173,12 @@ const NewProfile = () => {
         /> */}
         <div>
           <input
-            accept="image/*"
+            accept=".jpg,.jpeg,.png"
             className={classes.input}
             id="contained-button-file"
             type="file"
             name="mainImg"
-            required
+            // required
           />
 
           <label htmlFor="contained-button-file">
