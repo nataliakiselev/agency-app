@@ -47,7 +47,9 @@ const App = () => {
       </ProtectedRoute>
 
       <Route path="/profiles/:profileId">
-        <ProfilePage />
+        <ErrorBoundary>
+          <ProfilePage />
+        </ErrorBoundary>
       </Route>
 
       <Route path="/auth">

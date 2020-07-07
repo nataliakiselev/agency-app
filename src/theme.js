@@ -17,6 +17,12 @@ const theme = createMuiTheme({
     dark: "#b90005",
     contrastText: "#000000",
   },
+  typography: {
+    dt: {
+      textTransform: "uppercase",
+      marginBottom: "1rem",
+    },
+  },
 });
 
 export default theme;

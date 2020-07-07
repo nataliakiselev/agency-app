@@ -17,9 +17,7 @@ const useStyles = makeStyles((theme) => ({
   gridList: {
     width: "97%",
   },
-  gridTile: {
-    height: 230,
-  },
+
   title: {
     color: theme.palette.contrastText,
   },
@@ -46,16 +44,15 @@ const ListTemplate = ({ profiles = [] }) => {
   return (
     <div className={classes.root}>
       {/* <Grid container spacing={3} className={classes.gridList}> */}
-      <GridList cellHeight={180} className={classes.gridList} cols={4}>
+      <GridList cellHeight={230} className={classes.gridList} cols={4}>
         {/* <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">Women Main</ListSubheader>
         </GridListTile> */}
         {profiles.map((item) => (
-          <GridListTile key={item._id} className={classes.gridTile}>
+          <GridListTile key={item._id}>
             <img
               src={`http://localhost:4000/${item.mainImg}`}
               alt={item.name.first}
-              // width="180"
             />
             <Link to={`/profiles/${item._id}`} id={item._id} agent={item.agent}>
               <GridListTileBar
@@ -71,24 +68,6 @@ const ListTemplate = ({ profiles = [] }) => {
       </GridList>
     </div>
   );
-
-  //     <ul className="profiles-list">
-  //       <h2>Profiles</h2>
-  //       {props.profiles.map((item) => (
-  //         <Link
-  //           to={`/profiles/${item.id}`}
-  //           key={item.id}
-  //           id={item.id}
-  //           agent={item.agent}
-  //         >
-  //           <li>
-  //             <Avatar avatar={item.avatar} alt={item.name.first} />
-  //             <h3>{`${item.name.first} ${item.name.last}`} </h3>
-  //           </li>
-  //         </Link>
-  //       ))}
-  //     </ul>
-  // );
 };
 
 export default ListTemplate;
