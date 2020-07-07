@@ -1,111 +1,35 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  CardActions,
-  Button,
-} from "@material-ui/core";
-import { AuthContext } from "../../shared/context/AuthContext";
+import { Card, useMediaQuery, CardMedia } from "@material-ui/core";
+import CardDetails from "./CardDetails";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "flex-end",
-  },
-  details: {
-    [theme.breakpoints.down("xs")]: {
-      display: "none",
-    },
-    display: "flex",
-    flexDirection: "column",
-  },
-  content: {
-    flex: "1 0 auto",
+    height: "100%",
   },
   cover: {
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
-    width: "40%",
-  },
-  input: {
-    display: "none",
+    width: "50%",
   },
 }));
 
 const ProfileCard = (profile) => {
   const classes = useStyles();
-
-  const auth = useContext(AuthContext);
+  const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
   return (
-    <Card className={classes.root}>
-      <div className={classes.details}>
-        <Typography component="h5" variant="h5">
-          {profile.name.first} {profile.name.last}
-        </Typography>
-        <CardContent className={classes.content}>
-          <dl>
-            <dt>Height</dt>
-            <dd>{profile.height} cm</dd>
-            <dt>Bust</dt>
-            <dd>{profile.bust} cm</dd>
-            <dt>Waist</dt>
-            <dd>{profile.waist} cm</dd>
-            <dt>Hips</dt>
-            <dd>{profile.hips} cm</dd>
-            <dt>Shoes</dt>
-            <dd>{profile.shoes}</dd>
-            <dt>Hair</dt>
-            <dd>{profile.hair}</dd>
-            <dt>Eyes</dt>
-            <dd>{profile.eyes}</dd>
+    <Card className={classes.root} cols={2}>
+      {matches && <CardDetails {...profile} />}
 
-            {auth.isLoggedIn && (
-              <dl>
-                <dt>Email</dt>
-                <dd>{profile.email}</dd>
-                <dt>Phone</dt>
-                <dd>{profile.phone}</dd>
-
-                <dt>Notes</dt>
-                <dd>{profile.notes}</dd>
-              </dl>
-            )}
-          </dl>
-        </CardContent>
-      </div>
       <CardMedia
         className={classes.cover}
-        image={`http://localhost:4000/${profile.mainImg}`} //specify height?
+        image={`http://localhost:4000/${profile.mainImg}`}
         alt={profile.name.first}
         title="Live from space album cover"
       />
-      {auth.isLoggedIn && (
-        <CardActions>
-          <input
-            accept=".jpg,.jpeg,.png"
-            className={classes.input}
-            id="contained-button-file"
-            type="file"
-            name="mainImg"
-            // required
-          />
-
-          <label htmlFor="contained-button-file">
-            <Button
-              className={classes.button}
-              variant="outlined"
-              size="large"
-              component="span"
-            >
-              Add Photos
-            </Button>
-          </label>
-        </CardActions>
-      )}
     </Card>
   );
 };

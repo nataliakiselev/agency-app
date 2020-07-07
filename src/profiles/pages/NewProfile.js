@@ -40,7 +40,8 @@ const NewProfile = () => {
     try {
       const data = new FormData(form);
       data.append("agent", auth.userId);
-      console.log(e.target, "form");
+      // console.log(e.target, "form");
+
       console.log(Object.fromEntries(data), "data");
 
       const response = await fetch("http://localhost:4000/api/profiles", {

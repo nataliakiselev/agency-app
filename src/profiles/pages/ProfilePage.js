@@ -6,7 +6,7 @@ import Profile from "../components/Profile";
 import UpdateProfile from "../components/UpdateProfile";
 import WarningModal from "../../shared/UI/WarningModal";
 import { AuthContext } from "../../shared/context/AuthContext";
-import "../components/Profile.css";
+// import "../components/Profile.css";
 import ErrorBar from "../../shared/UI/ErrorBar";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
@@ -48,8 +48,7 @@ const ProfilePage = () => {
     };
     doFetch();
   }, [profileId]);
-  console.log("profile", loadedProfile);
-  // const { eyes, hair } = loadedProfile;
+
   const [viewMode, setViewMode] = useState(true);
 
   const handleUpdate = () => {

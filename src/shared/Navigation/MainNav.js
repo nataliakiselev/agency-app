@@ -13,6 +13,9 @@ import NavLinks from "./NavLinks";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    position: "fixed",
+    width: "100%",
+    zIndex: 10,
   },
   menuButton: {
     marginRight: theme.spacing(2),

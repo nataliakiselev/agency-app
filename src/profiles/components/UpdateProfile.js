@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import UpdatePhoto from "./UpdatePhoto";
+import AddPhotos from "./AddPhotos";
 import ErrorBar from "../../shared/UI/ErrorBar";
-
-// import { AuthContext } from "../../shared/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +12,13 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
+  buttonGroup: {
+    display: "flex",
+  },
+  wideButton: {
+    flexGrow: 1,
+  },
+
   input: {
     display: "none",
   },
@@ -24,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateProfile = (props) => {
   const classes = useStyles();
-
   const profile = props.profile;
 
   const initialState = {
@@ -36,11 +41,13 @@ const UpdateProfile = (props) => {
     email: "",
     phone: "",
     notes: "",
-    mainImg: null,
   };
   const [value, setValue] = useState(initialState);
   const [changes, setChanges] = useState({});
   const [error, setError] = useState(null);
+  const clearError = () => {
+    setError(null);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,11 +57,7 @@ const UpdateProfile = (props) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    // e.persist();
     try {
-      console.log(changes, "changes");
-      console.log(profile._id);
-
       const response = await fetch(
         `http://localhost:4000/api/profiles/${profile._id}`,
         {
@@ -71,7 +74,6 @@ const UpdateProfile = (props) => {
       console.log(response);
     } catch (err) {
       console.log(err);
-
       setError(err.message || "Something went wrong");
     }
   };
@@ -81,7 +83,7 @@ const UpdateProfile = (props) => {
       <h2>
         {profile.name.first} {profile.name.last}
       </h2>
-      <form className={classes.root} onSubmit={submitHandler}>
+      <div className={classes.root} onSubmit={submitHandler}>
         <TextField
           // id="height"
           name="height"
@@ -183,29 +185,9 @@ const UpdateProfile = (props) => {
         >
           Cancel
         </Button>
-      </form>
-      <div>
-        <input
-          accept=".jpg,.jpeg,.png"
-          className={classes.input}
-          id="contained-button-file"
-          type="file"
-          name="mainImg"
-
-          // required
-        />
-
-        <label htmlFor="contained-button-file">
-          <Button
-            className={classes.button}
-            variant="outlined"
-            size="large"
-            component="span"
-          >
-            Change Photo
-          </Button>
-        </label>
       </div>
+      <UpdatePhoto profile={profile} setError={setError} />
+      <AddPhotos profile={profile} setError={setError} />
       <div>
         <Button
           variant="contained"
@@ -216,6 +198,7 @@ const UpdateProfile = (props) => {
           View Profile
         </Button>
       </div>
+      <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </>
   );
 };
