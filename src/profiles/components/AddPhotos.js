@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import Icon from "@material-ui/core/Icon";
+import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const AddPhotos = ({ profile, setError }) => {
   const classes = useStyles();
   const fileInput = React.createRef();
+  const [isLoading, setIsLoading] = useState(false);
 
   const addPhotosHandler = async (e) => {
     e.preventDefault();

@@ -20,7 +20,6 @@ const theme = createMuiTheme({
   typography: {
     dt: {
       textTransform: "uppercase",
-      marginBottom: "1rem",
     },
   },
 });
