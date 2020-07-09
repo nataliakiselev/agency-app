@@ -13,7 +13,10 @@ import NavLinks from "./NavLinks";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    position: "fixed",
+    [theme.breakpoints.down("xs")]: {
+      position: "fixed",
+    },
+
     width: "100%",
     zIndex: 10,
   },

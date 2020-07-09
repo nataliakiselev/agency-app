@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import UpdatePhoto from "./UpdatePhoto";
 import AddPhotos from "./AddPhotos";
 import ErrorBar from "../../shared/UI/ErrorBar";
+import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,7 @@ const UpdateProfile = (props) => {
   };
   const [value, setValue] = useState(initialState);
   const [changes, setChanges] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const clearError = () => {
     setError(null);
@@ -58,6 +60,7 @@ const UpdateProfile = (props) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const response = await fetch(
         `http://localhost:4000/api/profiles/${profile._id}`,
         {
@@ -76,10 +79,12 @@ const UpdateProfile = (props) => {
       console.log(err);
       setError(err.message || "Something went wrong");
     }
+    setIsLoading(false);
   };
 
   return (
     <>
+      {isLoading && <LoadingSpinner />}
       <h2>
         {profile.name.first} {profile.name.last}
       </h2>

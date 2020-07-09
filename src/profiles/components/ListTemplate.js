@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
+import {
+  GridList,
+  GridListTile,
+  GridListTileBar,
+  useMediaQuery,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: theme.spacing(7),
+    },
   },
   gridList: {
     width: "97%",
@@ -29,7 +34,9 @@ const useStyles = makeStyles((theme) => ({
 
 const ListTemplate = ({ profiles = [] }) => {
   const classes = useStyles();
-
+  const small = useMediaQuery((theme) => theme.breakpoints.down("xs"));
+  const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
+  const widescreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
   if (!profiles.length) {
     return (
       <div>
@@ -44,7 +51,11 @@ const ListTemplate = ({ profiles = [] }) => {
   return (
     <div className={classes.root}>
       {/* <Grid container spacing={3} className={classes.gridList}> */}
-      <GridList cellHeight={230} className={classes.gridList} cols={4}>
+      <GridList
+        cellHeight={230}
+        className={classes.gridList}
+        cols={(small && 1) || (widescreen && 4) || (matches && 2)}
+      >
         {/* <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">Women Main</ListSubheader>
         </GridListTile> */}
