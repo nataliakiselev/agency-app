@@ -52,10 +52,17 @@ const UpdateProfile = (props) => {
   };
   console.log(value);
   const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setValue({ ...value, [name]: value });
-    setChanges({ ...changes, [name]: value });
+    const { name, value:val } = e.target;
+    console.log("name", name);
+    console.log("value", val);
+    console.log('original state', value);
+    const newValues = { ...value, [name]: val };
+    console.log("newValues", newValues);
+    setValue(newValues);
+    console.log("original changes", changes);
+    const newChanges = { ...changes, [name]: val };
+    console.log("newChanges", newChanges);
+    setChanges(newChanges);
     console.log(value);
   };
   console.log(value);
@@ -73,7 +80,7 @@ const UpdateProfile = (props) => {
           },
           method: "PUT",
           body: JSON.stringify(changes),
-        },
+        }
       );
       if (!response.ok) {
         throw new Error(response.message);
