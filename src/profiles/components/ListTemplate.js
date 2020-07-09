@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 const ListTemplate = ({ profiles = [] }) => {
   const classes = useStyles();
   const small = useMediaQuery((theme) => theme.breakpoints.down("xs"));
-  const matches = useMediaQuery((theme) => theme.breakpoints.up("sm"));
   const widescreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
   if (!profiles.length) {
     return (
@@ -54,7 +53,7 @@ const ListTemplate = ({ profiles = [] }) => {
       <GridList
         cellHeight={230}
         className={classes.gridList}
-        cols={(small && 1) || (widescreen && 4) || (matches && 2)}
+        cols={small ? 1 : widescreen ? 4 : 2}
       >
         {/* <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">Women Main</ListSubheader>

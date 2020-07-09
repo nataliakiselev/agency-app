@@ -50,15 +50,19 @@ const UpdateProfile = (props) => {
   const clearError = () => {
     setError(null);
   };
-
+  console.log(value);
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setValue({ ...value, [name]: value });
     setChanges({ ...changes, [name]: value });
+    console.log(value);
   };
-
+  console.log(value);
   const submitHandler = async (e) => {
     e.preventDefault();
+    console.log(value);
+    console.log(changes);
     try {
       setIsLoading(true);
       const response = await fetch(
@@ -88,7 +92,7 @@ const UpdateProfile = (props) => {
       <h2>
         {profile.name.first} {profile.name.last}
       </h2>
-      <div className={classes.root} onSubmit={submitHandler}>
+      <form className={classes.root} onSubmit={submitHandler}>
         <TextField
           // id="height"
           name="height"
@@ -190,7 +194,7 @@ const UpdateProfile = (props) => {
         >
           Cancel
         </Button>
-      </div>
+      </form>
       <UpdatePhoto profile={profile} setError={setError} />
       <AddPhotos profile={profile} setError={setError} />
       <div>

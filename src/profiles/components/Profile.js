@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { GridList, GridListTile, useMediaQuery } from "@material-ui/core";
-import ProfileCard from "./ProfileCard";
 import CardDetails from "./CardDetails";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,32 +31,24 @@ const Profile = ({ profile }) => {
   const photos = profile.photos;
 
   return (
-    <>
-      {!photos.length ? (
-        <ProfileCard {...profile} />
-      ) : (
-        <div className={classes.root}>
-          <GridList className={classes.gridList} cellHeight={600}>
-            {matches && (
-              <GridListTile cols={2}>
-                <CardDetails {...profile} />
-              </GridListTile>
-            )}
-            <GridListTile cols={2}>
-              <ProfileCard {...profile} />
-            </GridListTile>
-            {photos.map((photo, i) => (
-              <GridListTile key={i} cols={matches ? 2 : 1}>
-                <img
-                  src={`http://localhost:4000/${photo.path}`}
-                  alt={photo.name}
-                />
-              </GridListTile>
-            ))}
-          </GridList>
-        </div>
-      )}
-    </>
+    <div className={classes.root}>
+      <GridList className={classes.gridList} cellHeight={600}>
+        <GridListTile cols={matches ? 2 : 1}>
+          <CardDetails {...profile} />
+        </GridListTile>
+        <GridListTile cols={matches ? 2 : 1}>
+          <img
+            src={`http://localhost:4000/${profile.mainImg}`}
+            alt={`${profile.name.first} cover image`}
+          />
+        </GridListTile>
+        {photos.map((photo, i) => (
+          <GridListTile key={i} cols={matches ? 2 : 1}>
+            <img src={`http://localhost:4000/${photo.path}`} alt={photo.name} />
+          </GridListTile>
+        ))}
+      </GridList>
+    </div>
   );
 };
 
