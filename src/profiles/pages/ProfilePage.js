@@ -108,7 +108,13 @@ const ProfilePage = () => {
               </React.Fragment>
             }
           />
-          {!isLoading && loadedProfile && <Profile profile={loadedProfile} />}
+          {!isLoading && loadedProfile && (
+            <Profile
+              profile={loadedProfile}
+              profileId={profileId}
+              setError={setError}
+            />
+          )}
         </React.Fragment>
       ) : (
         <UpdateProfile profile={loadedProfile} onClick={handleCancel} />

@@ -38,6 +38,7 @@ const AddPhotos = ({ profile, setError }) => {
 
     console.log(files);
     try {
+      setIsLoading(true);
       const formData = new FormData();
 
       for (let i = 0; i < files.length; i++) {
@@ -45,7 +46,7 @@ const AddPhotos = ({ profile, setError }) => {
       }
       console.log(Object.fromEntries(formData), "dataObj");
       const response = await fetch(
-        `http://localhost:4000/api/profiles/${profile._id}/upload`,
+        `http://localhost:4000/api/profiles/${profile._id}`,
         {
           method: "POST",
           body: formData,
@@ -58,10 +59,11 @@ const AddPhotos = ({ profile, setError }) => {
       console.log(err);
       setError(err.message || "Something went wrong");
     }
+    setIsLoading(false);
   };
   return (
     <form
-      action="/profiles/:id"
+      action="/profiles/:id/upload"
       method="post"
       encType="multipart/form-data"
       className={classes.buttonGroup}

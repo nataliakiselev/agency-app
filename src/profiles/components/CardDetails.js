@@ -4,15 +4,17 @@ import { CardContent, Typography } from "@material-ui/core";
 import { AuthContext } from "../../shared/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
-  content: {
-    // display: "flex",
-    // flexWrap: "wrap",
-    textAlign: "right",
-    // justifyContent: "flex-end",
-    // marginLeft: theme.spacing(5),
+  root: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
-  contact: {
-    marginTop: theme.spacing(5),
+  content: {
+    textAlign: "right",
+  },
+  list: {
+    [theme.breakpoints.up("sm")]: {
+      paddingTop: theme.spacing(7),
+    },
   },
 }));
 
@@ -20,7 +22,7 @@ const CardDetails = (profile) => {
   const auth = useContext(AuthContext);
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.root}>
       {auth.isLoggedIn && (
         <CardContent component="dl" className="contact">
           <Typography component="dt" variant="h6">
@@ -49,7 +51,7 @@ const CardDetails = (profile) => {
           {profile.name.first} {profile.name.last}
         </Typography>
 
-        <dl>
+        <dl className={classes.list}>
           <Typography component="dt" variant="h6">
             Height
           </Typography>
@@ -94,7 +96,7 @@ const CardDetails = (profile) => {
           </Typography>
         </dl>
       </CardContent>
-    </>
+    </div>
   );
 };
 

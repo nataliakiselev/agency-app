@@ -25,19 +25,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UpdatePhoto = ({ profile, setError }) => {
+const UpdateCover = ({ profile, setError }) => {
   const classes = useStyles();
   const fileInput = React.createRef();
 
   const addPhotosHandler = async (e) => {
     e.preventDefault();
     e.persist();
-    const data = fileInput.current.file;
 
-    console.log(data);
     try {
+      const data = new FormData();
+      data.append("mainImg", fileInput.current.files[0]);
+
+      console.log(Object.fromEntries(data), "data");
       const response = await fetch(
-        `http://localhost:4000/api/profiles/${profile._id}`,
+        `http://localhost:4000/api/profiles/${profile._id}/updatecover`,
         {
           method: "PUT",
           body: data,
@@ -53,7 +55,8 @@ const UpdatePhoto = ({ profile, setError }) => {
   };
   return (
     <form
-      action="/profiles/:id"
+      encType="multipart/form-data"
+      action="/profiles/:id/updateCover"
       method="put"
       className={classes.buttonGroup}
       onSubmit={addPhotosHandler}
@@ -84,4 +87,4 @@ const UpdatePhoto = ({ profile, setError }) => {
   );
 };
 
-export default UpdatePhoto;
+export default UpdateCover;

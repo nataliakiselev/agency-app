@@ -38,12 +38,15 @@ const ProfilesList = () => {
     };
     doFetch();
   }, [userId]);
-
+  //  const profileDeletedHandler = deletedProfileId => {
+  //     setLoadedProfiles(prevProfiles =>
+  //       prevProfiles.filter(place => place.id !== deletedProfileId)
+  //     );
   return (
     <>
       {isLoading && <LoadingSpinner />}
       {!isLoading && loadedProfiles && (
-        <ListTemplate profiles={loadedProfiles} />
+        <ListTemplate profiles={loadedProfiles} /> //onDeleteProfile={profileDeletedHandler}
       )}
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </>

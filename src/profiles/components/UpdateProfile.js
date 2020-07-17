@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import UpdatePhoto from "./UpdatePhoto";
+import UpdateCover from "./UpdateCover";
 import AddPhotos from "./AddPhotos";
 import ErrorBar from "../../shared/UI/ErrorBar";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
@@ -9,7 +10,7 @@ import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
-      margin: theme.spacing(1),
+      margin: "theme.spacing(1)",
       width: "100%",
     },
   },
@@ -31,8 +32,12 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateProfile = (props) => {
   const classes = useStyles();
+  // const history = useHistory();
   const profile = props.profile;
-
+  // const auth = useContext(AuthContext);
+  // let { id } = useParams();
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
   const initialState = {
     height: "",
     bust: "",
@@ -50,20 +55,24 @@ const UpdateProfile = (props) => {
   const clearError = () => {
     setError(null);
   };
+
+  // function viewHandler(id) {
+  //   history.push(`/profiles/${id}`);
+  // }
   console.log(value);
   const handleChange = (e) => {
-    const { name, value:val } = e.target;
-    console.log("name", name);
-    console.log("value", val);
-    console.log('original state', value);
+    const { name, value: val } = e.target;
+    // console.log("name", name);
+    // console.log("value", val);
+    // console.log("original state", value);
     const newValues = { ...value, [name]: val };
-    console.log("newValues", newValues);
+    // console.log("newValues", newValues);
     setValue(newValues);
-    console.log("original changes", changes);
+    // console.log("original changes", changes);
     const newChanges = { ...changes, [name]: val };
-    console.log("newChanges", newChanges);
+    // console.log("newChanges", newChanges);
     setChanges(newChanges);
-    console.log(value);
+    // console.log(value);
   };
   console.log(value);
   const submitHandler = async (e) => {
@@ -72,6 +81,7 @@ const UpdateProfile = (props) => {
     console.log(changes);
     try {
       setIsLoading(true);
+
       const response = await fetch(
         `http://localhost:4000/api/profiles/${profile._id}`,
         {
@@ -80,7 +90,7 @@ const UpdateProfile = (props) => {
           },
           method: "PUT",
           body: JSON.stringify(changes),
-        }
+        },
       );
       if (!response.ok) {
         throw new Error(response.message);
@@ -94,14 +104,13 @@ const UpdateProfile = (props) => {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       {isLoading && <LoadingSpinner />}
       <h2>
         {profile.name.first} {profile.name.last}
       </h2>
-      <form className={classes.root} onSubmit={submitHandler}>
+      <form onSubmit={submitHandler}>
         <TextField
-          // id="height"
           name="height"
           label="Height (cm)"
           type="number"
@@ -202,7 +211,7 @@ const UpdateProfile = (props) => {
           Cancel
         </Button>
       </form>
-      <UpdatePhoto profile={profile} setError={setError} />
+      <UpdateCover profile={profile} setError={setError} />
       <AddPhotos profile={profile} setError={setError} />
       <div>
         <Button
@@ -210,12 +219,14 @@ const UpdateProfile = (props) => {
           size="large"
           className={classes.button}
           onClick={props.onClick}
+          // onClick={() => viewHandler(profile._id)}
+          aria-label="view profile"
         >
           View Profile
         </Button>
       </div>
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
-    </>
+    </div>
   );
 };
 
