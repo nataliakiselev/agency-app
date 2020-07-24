@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./User.css";
-import Avatar from "../../shared/UI/Avatar";
 import Card from "../../shared/UI/Card";
 
 const User = (props) => {

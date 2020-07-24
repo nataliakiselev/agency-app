@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import PageGrid from "../../shared/UI/PageGrid";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { AuthContext } from "../../shared/context/AuthContext";
 import UpdateCover from "./UpdateCover";
 import AddPhotos from "./AddPhotos";
 import ErrorBar from "../../shared/UI/ErrorBar";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
 const useStyles = makeStyles((theme) => ({
+  formRow: {
+    margin: theme.spacing(1),
+
+    display: "flex",
+    justifyContent: "space-around",
+  },
   root: {
+    margin: `0 auto ${theme.spacing(1)}`,
+    padding: "1rem",
+    width: "90%",
+    maxWidth: "40rem",
+    borderRadius: "6px",
+    background: "white",
+  },
+  form: {
     "& .MuiTextField-root": {
-      margin: "theme.spacing(1)",
+      margin: theme.spacing(1),
       width: "100%",
     },
   },
-  buttonGroup: {
-    display: "flex",
-  },
-  wideButton: {
-    flexGrow: 1,
-  },
-
-  input: {
-    display: "none",
-  },
   button: {
     margin: theme.spacing(1),
-    width: "100%",
+    // width: "100%",
   },
 }));
 
@@ -35,6 +41,7 @@ const UpdateProfile = (props) => {
   // const history = useHistory();
   const profile = props.profile;
   // const auth = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   // let { id } = useParams();
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState(null);
@@ -87,6 +94,7 @@ const UpdateProfile = (props) => {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
           },
           method: "PUT",
           body: JSON.stringify(changes),
@@ -104,12 +112,14 @@ const UpdateProfile = (props) => {
   };
 
   return (
+    // <PageGrid>
     <div className={classes.root}>
       {isLoading && <LoadingSpinner />}
       <h2>
         {profile.name.first} {profile.name.last}
       </h2>
-      <form onSubmit={submitHandler}>
+
+      <form onSubmit={submitHandler} className={classes.form}>
         <TextField
           name="height"
           label="Height (cm)"
@@ -119,6 +129,7 @@ const UpdateProfile = (props) => {
           placeholder={String(profile.height)}
           variant="outlined"
         />
+
         <TextField
           id="bust"
           name="bust"
@@ -129,6 +140,7 @@ const UpdateProfile = (props) => {
           placeholder={String(profile.hips)}
           variant="outlined"
         />
+
         <TextField
           id="waist"
           name="waist"
@@ -150,6 +162,7 @@ const UpdateProfile = (props) => {
           placeholder={String(profile.hips)}
           variant="outlined"
         />
+
         <TextField
           id="shoes"
           name="shoes"
@@ -160,6 +173,7 @@ const UpdateProfile = (props) => {
           placeholder={String(profile.shoes)}
           variant="outlined"
         />
+
         <TextField
           id="email"
           name="email"
@@ -170,6 +184,7 @@ const UpdateProfile = (props) => {
           placeholder={profile.email}
           variant="outlined"
         />
+
         <TextField
           id="phone"
           name="phone"
@@ -193,40 +208,42 @@ const UpdateProfile = (props) => {
           multiline
         />
 
-        <Button
-          type="submit"
-          variant="contained"
-          // color="secondary"
-          size="large"
-          className={classes.button}
-        >
-          Save
-        </Button>
-        <Button
-          variant="contained"
-          size="large"
-          className={classes.button}
-          onClick={props.onClick}
-        >
-          Cancel
-        </Button>
+        <div className={classes.formRow}>
+          <Button
+            type="submit"
+            variant="contained"
+            // color="secondary"
+            size="large"
+            className={classes.button}
+          >
+            Save
+          </Button>
+          <Button
+            variant="contained"
+            size="large"
+            className={classes.button}
+            onClick={props.onClick}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            size="large"
+            className={classes.button}
+            onClick={props.onClick}
+            // onClick={() => viewHandler(profile._id)}
+            aria-label="view profile"
+          >
+            View Profile
+          </Button>
+        </div>
       </form>
       <UpdateCover profile={profile} setError={setError} />
       <AddPhotos profile={profile} setError={setError} />
-      <div>
-        <Button
-          variant="contained"
-          size="large"
-          className={classes.button}
-          onClick={props.onClick}
-          // onClick={() => viewHandler(profile._id)}
-          aria-label="view profile"
-        >
-          View Profile
-        </Button>
-      </div>
+
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </div>
+    // </PageGrid>
   );
 };
 

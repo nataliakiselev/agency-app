@@ -1,15 +1,5 @@
-import React, { createContext, useState, useEffect, useCallback } from "react";
-
-export const AuthContext = createContext({
-  token: null,
-  isLoggedIn: false,
-  userId: null,
-  login: () => {},
-  logout: () => {},
-});
-
 let logoutTimer;
-export const AuthProvider = (props) => {
+export const useAuth = () => {
   // const clearError = () => {
   //   setError(null);
   // };
@@ -65,16 +55,8 @@ export const AuthProvider = (props) => {
       );
     }
   }, [login]);
-  return (
-    <AuthContext.Provider
-      value={{
-        token,
-        login,
-        logout,
-        userId,
-      }}
-    >
-      {props.children}
-    </AuthContext.Provider>
-  );
+
+  return { token, login, logout, userId };
 };
+
+export default useAuth;

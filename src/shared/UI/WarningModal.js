@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function WarningModal(props) {
   const classes = useStyles();
-  // const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   // const handleOpen = () => {
   //   setOpen(true);

@@ -13,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoadingSpinner() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  // const [open, setOpen] = React.useState(true);
 
   return (
     <div>
-      <Backdrop className={classes.backdrop} open={open}>
+      <Backdrop className={classes.backdrop} >
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>

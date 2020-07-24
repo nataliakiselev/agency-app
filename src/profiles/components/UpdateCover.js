@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import { AuthContext } from "../../shared/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "100%",
     },
   },
-  buttonGroup: {
+  formRow: {
+    margin: theme.spacing(1),
     display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
   },
   wideButton: {
     flexGrow: 1,
+  },
+  smallButton: {
+    width: "20%",
   },
 
   input: {
@@ -21,13 +27,14 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: theme.spacing(1),
-    width: "100%",
+    // width: "100%",
   },
 }));
 
 const UpdateCover = ({ profile, setError }) => {
   const classes = useStyles();
   const fileInput = React.createRef();
+  const { token } = useContext(AuthContext);
 
   const addPhotosHandler = async (e) => {
     e.preventDefault();
@@ -43,6 +50,9 @@ const UpdateCover = ({ profile, setError }) => {
         {
           method: "PUT",
           body: data,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
         },
       );
       if (!response.ok) {
@@ -58,7 +68,7 @@ const UpdateCover = ({ profile, setError }) => {
       encType="multipart/form-data"
       action="/profiles/:id/updateCover"
       method="put"
-      className={classes.buttonGroup}
+      className={classes.formRow}
       onSubmit={addPhotosHandler}
     >
       <input
@@ -72,15 +82,15 @@ const UpdateCover = ({ profile, setError }) => {
 
       <label htmlFor="file" className={classes.wideButton}>
         <Button
-          variant="outlined"
-          size="large"
+          // variant="outlined"
+          // size="large"
           component="span"
           className={classes.button}
         >
-          Change Cover Photo
+          Change Cover
         </Button>
       </label>
-      <Button type="submit" variant="contained" color="primary">
+      <Button type="submit" variant="outlined">
         Save
       </Button>
     </form>

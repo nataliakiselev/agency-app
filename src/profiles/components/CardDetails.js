@@ -11,11 +11,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     textAlign: "right",
   },
-  list: {
-    [theme.breakpoints.up("sm")]: {
-      paddingTop: theme.spacing(7),
-    },
-  },
 }));
 
 const CardDetails = (profile) => {
@@ -51,7 +46,7 @@ const CardDetails = (profile) => {
           {profile.name.first} {profile.name.last}
         </Typography>
 
-        <dl className={classes.list}>
+        <dl>
           <Typography component="dt" variant="h6">
             Height
           </Typography>

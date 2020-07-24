@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import PageGrid from "../../shared/UI/PageGrid";
 import Profile from "../components/Profile";
 import UpdateProfile from "../components/UpdateProfile";
 import WarningModal from "../../shared/UI/WarningModal";
@@ -9,9 +11,19 @@ import { AuthContext } from "../../shared/context/AuthContext";
 import ErrorBar from "../../shared/UI/ErrorBar";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
 const ProfilePage = () => {
-  const auth = useContext(AuthContext);
-  const profileId = useParams().profileId;
+  const classes = useStyles();
+  const { userId, token } = useContext(AuthContext);
+
+  const { id } = useParams();
+  // const { agent } =
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [loadedProfile, setLoadedProfile] = useState();
@@ -27,11 +39,11 @@ const ProfilePage = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:4000/api/profiles/${profileId}`,
+          `http://localhost:4000/api/profiles/${id}`,
         );
-
+        console.log(id, "profileId");
         console.log(response);
-
+        console.log("user", userId);
         const resJson = await response.json();
         if (!response.ok) {
           throw new Error(resJson.message);
@@ -46,7 +58,7 @@ const ProfilePage = () => {
       }
     };
     doFetch();
-  }, [profileId]);
+  }, [id]);
 
   const [viewMode, setViewMode] = useState(true);
 
@@ -62,18 +74,17 @@ const ProfilePage = () => {
   };
   const confirmDeleteHandler = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:4000/api/profiles/${profileId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          method: "DELETE",
+      const response = await fetch(`http://localhost:4000/api/profiles/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
         },
-      );
+        method: "DELETE",
+      });
 
       console.log(response);
-      history.push(`/${auth.userId}/profiles`);
+      // history.push(`/${auth.user._id}/profiles`);
+      history.push(`/${userId}/profiles`);
       if (!response.ok) {
         throw new Error(response.message);
       }
@@ -88,7 +99,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <div>
+    <PageGrid>
       {isLoading && <LoadingSpinner />}
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
       {viewMode ? (
@@ -111,7 +122,7 @@ const ProfilePage = () => {
           {!isLoading && loadedProfile && (
             <Profile
               profile={loadedProfile}
-              profileId={profileId}
+              profileId={id}
               setError={setError}
             />
           )}
@@ -119,13 +130,19 @@ const ProfilePage = () => {
       ) : (
         <UpdateProfile profile={loadedProfile} onClick={handleCancel} />
       )}
-      {auth.isLoggedIn && viewMode && (
+      {/* {auth.user && viewMode && ( */}
+      {/* userId=== agent */}
+      {userId && viewMode && (
         <div className="profile-item__actions">
-          <Button onClick={handleUpdate}>Edit</Button>
-          <Button onClick={showWarningHandler}>Delete</Button>
+          <Button className={classes.button} onClick={handleUpdate}>
+            Edit
+          </Button>
+          <Button className={classes.button} onClick={showWarningHandler}>
+            Delete
+          </Button>
         </div>
       )}
-    </div>
+    </PageGrid>
   );
 };
 

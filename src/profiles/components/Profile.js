@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
-    [theme.breakpoints.down("xs")]: {
-      paddingTop: theme.spacing(5),
-    },
   },
   gridList: {
     flexWrap: "nowrap",
@@ -41,7 +38,7 @@ const Profile = ({ profile, profileId, setError }) => {
   const sm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const xs = useMediaQuery((theme) => theme.breakpoints.down("xs"));
 
-  const auth = useContext(AuthContext);
+  const { token, userId } = useContext(AuthContext);
 
   const profilePhotos = profile.photos;
   const [photos, setPhotos] = useState(profilePhotos);
@@ -53,6 +50,7 @@ const Profile = ({ profile, profileId, setError }) => {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
           },
           method: "DELETE",
         },
@@ -74,10 +72,7 @@ const Profile = ({ profile, profileId, setError }) => {
   };
   return (
     <div className={classes.root}>
-      <GridList
-        className={classes.gridList}
-        cellHeight={xs ? 550 : sm ? 670 : 780}
-      >
+      <GridList className={classes.gridList} cellHeight={550}>
         <GridListTile cols={xs ? 2 : 1}>
           <CardDetails {...profile} />
         </GridListTile>
@@ -90,7 +85,7 @@ const Profile = ({ profile, profileId, setError }) => {
         {photos.map((photo, i) => (
           <GridListTile key={i} cols={xs ? 2 : 1}>
             <img src={`http://localhost:4000/${photo.path}`} alt={photo.name} />
-            {auth.isLoggedIn && (
+            {userId === profile.agent && (
               <Button
                 className={classes.delete}
                 onClick={() => deletePhoto(photo._id)}

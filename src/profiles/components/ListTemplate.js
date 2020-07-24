@@ -9,18 +9,15 @@ import {
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  base: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
-    [theme.breakpoints.down("xs")]: {
-      paddingTop: theme.spacing(7),
-    },
-  },
-  gridList: {
-    width: "97%",
+    // [theme.breakpoints.down("xs")]: {
+    //   paddingTop: theme.spacing(7),
+    // },
   },
 
   title: {
@@ -48,7 +45,7 @@ const ListTemplate = ({ profiles = [] }) => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.base}>
       {/* <Grid container spacing={3} className={classes.gridList}> */}
       <GridList
         cellHeight={230}
