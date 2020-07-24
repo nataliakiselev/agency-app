@@ -43,7 +43,7 @@ const ProfilePage = () => {
         );
         console.log(id, "profileId");
         console.log(response);
-        console.log("user", userId);
+        // console.log("user", userId);
         const resJson = await response.json();
         if (!response.ok) {
           throw new Error(resJson.message);

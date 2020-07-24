@@ -41,7 +41,7 @@ export const AuthProvider = (props) => {
     setTokenExpiry(null);
     setUserId(null);
     localStorage.removeItem("user");
-  });
+  }, []);
 
   useEffect(() => {
     if (token && tokenExpiry) {

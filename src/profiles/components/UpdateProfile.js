@@ -203,7 +203,7 @@ const UpdateProfile = (props) => {
           placeholder={profile.notes}
           value={value.notes}
           onChange={handleChange}
-          placeholder={profile.notes}
+          // placeholder={profile.notes}
           variant="outlined"
           multiline
         />
