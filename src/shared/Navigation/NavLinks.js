@@ -44,7 +44,7 @@ const NavLinks = (props) => {
       {!!token && (
         <>
           <ListItem button>
-            <NavLink to={`users/${userId}/profiles`}>My Profiles</NavLink>
+            <NavLink to={`/users/${userId}/profiles`}>My Profiles</NavLink>
           </ListItem>
           <ListItem button>
             <NavLink to="/profiles/new">Add Profile</NavLink>
