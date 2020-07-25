@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListTemplate from "../components/ListTemplate";
+import PageGrid from "../../shared/UI/PageGrid";
 import ErrorBar from "../../shared/UI/ErrorBar";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
@@ -36,14 +37,14 @@ const AllProfiles = () => {
     doFetch();
   }, []);
   return (
-    <div>
+    <PageGrid>
       {isLoading && <LoadingSpinner />}
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
       {!isLoading && loadedProfiles && (
         <ListTemplate profiles={loadedProfiles} />
       )}
       ;
-    </div>
+    </PageGrid>
   );
 };
 

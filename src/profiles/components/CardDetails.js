@@ -11,37 +11,32 @@ const useStyles = makeStyles((theme) => ({
   content: {
     textAlign: "right",
   },
-  list: {
-    [theme.breakpoints.up("sm")]: {
-      paddingTop: theme.spacing(7),
-    },
-  },
 }));
 
 const CardDetails = (profile) => {
-  const auth = useContext(AuthContext);
+  const { userId } = useContext(AuthContext);
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      {auth.isLoggedIn && (
+      {userId === profile.agent && (
         <CardContent component="dl" className="contact">
           <Typography component="dt" variant="h6">
             Email
           </Typography>
-          <Typography component="dd" variant="h5">
+          <Typography component="dd" variant="body2">
             {profile.email}
           </Typography>
           <Typography component="dt" variant="h6">
             Phone
           </Typography>
-          <Typography component="dd" variant="h5">
+          <Typography component="dd" variant="body2">
             {profile.phone}
           </Typography>
 
           <Typography component="dt" variant="h6">
             Notes
           </Typography>
-          <Typography component="dd" variant="h5">
+          <Typography component="dd" variant="body2">
             {profile.notes}
           </Typography>
         </CardContent>
@@ -51,7 +46,7 @@ const CardDetails = (profile) => {
           {profile.name.first} {profile.name.last}
         </Typography>
 
-        <dl className={classes.list}>
+        <dl>
           <Typography component="dt" variant="h6">
             Height
           </Typography>

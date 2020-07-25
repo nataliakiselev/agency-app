@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Auth = (props) => {
+const Auth = () => {
   const classes = useStyles();
-  console.log(props);
-  const auth = useContext(AuthContext);
-  let history = useHistory();
 
+  let history = useHistory();
+  const { login } = useContext(AuthContext);
+  // console.log(userId);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -40,7 +40,7 @@ const Auth = (props) => {
   const authSubmitHandler = async (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
-    console.log(e.target, "form");
+    // console.log(e.target, "form");
     console.log(data, "data");
     setIsLoading(true);
     if (isLoginMode) {
@@ -54,19 +54,21 @@ const Auth = (props) => {
         });
 
         const resJson = await response.json();
-
+        console.log(resJson);
         if (!response.ok) {
           throw new Error(resJson.message);
         }
-        console.log(resJson); // Should set this into state...
-        setIsLoading(false);
+        console.log(resJson.userId);
+        login(resJson.userId, resJson.token); //set user into state
 
-        auth.login(resJson.user._id); // ...here
         history.push("/");
       } catch (err) {
         console.log(err);
-        setIsLoading(false);
+
         setError(err.message || "Something went wrong");
+      } finally {
+        setIsLoading(false);
+        // setLoaded("true");
       }
     } else {
       try {
@@ -85,12 +87,15 @@ const Auth = (props) => {
         }
 
         console.log(resJson);
-        setIsLoading(false);
-        auth.login(resJson.user._id);
+
+        login(resJson.userId, resJson.token);
       } catch (err) {
         console.log(err);
-        setIsLoading(false);
+
         setError(err.message || "Something went wrong");
+      } finally {
+        setIsLoading(false);
+        // setLoaded("true");
       }
     }
   };
@@ -139,7 +144,12 @@ const Auth = (props) => {
           required
           autoComplete="on"
         />
-        <Button type="submit" variant="contained">
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          className={classes.button}
+        >
           {isLoginMode ? "Login" : "New Account"}
         </Button>
         <Button variant="outlined" onClick={switchToRegister}>

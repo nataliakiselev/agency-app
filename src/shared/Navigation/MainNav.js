@@ -13,12 +13,20 @@ import NavLinks from "./NavLinks";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    // [theme.breakpoints.down("xs")]: {
-    //   position: "fixed",
-    // },
 
     // width: "100%",
     zIndex: 10,
+  },
+  appbar: {
+    position: "sticky",
+    // [theme.breakpoints.down("xs")]: {
+    //   position: "fixed",
+    // },
+  },
+  bar: {
+    [theme.breakpoints.down("md")]: {
+      height: 130,
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -45,7 +53,7 @@ const MainNav = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="sticky">
+      <AppBar className={classes.appBar}>
         <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
           <div
             className={classes.list}
@@ -56,7 +64,7 @@ const MainNav = (props) => {
             <NavLinks />
           </div>
         </Drawer>
-        <Toolbar>
+        <Toolbar className={classes.bar}>
           <IconButton
             edge="start"
             className={classes.menuButton}
