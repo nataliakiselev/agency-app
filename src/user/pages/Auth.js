@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 const Auth = () => {
   const classes = useStyles();
 
-  // const auth = useContext(AuthContext);
   let history = useHistory();
   const { login } = useContext(AuthContext);
   // console.log(userId);
@@ -59,7 +58,7 @@ const Auth = () => {
         if (!response.ok) {
           throw new Error(resJson.message);
         }
-
+        console.log(resJson.userId);
         login(resJson.userId, resJson.token); //set user into state
 
         history.push("/");
@@ -72,8 +71,6 @@ const Auth = () => {
         // setLoaded("true");
       }
     } else {
-      // signup(data);
-      // history.push("/");
       try {
         const response = await fetch("http://localhost:4000/api/users/signup", {
           headers: {
@@ -147,7 +144,12 @@ const Auth = () => {
           required
           autoComplete="on"
         />
-        <Button type="submit" variant="contained" className={classes.button}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          className={classes.button}
+        >
           {isLoginMode ? "Login" : "New Account"}
         </Button>
         <Button variant="outlined" onClick={switchToRegister}>

@@ -62,6 +62,7 @@ const ListTemplate = ({ profiles = [] }) => {
               alt={item.name.first}
             />
             <Link to={`/profiles/${item._id}`} id={item._id} agent={item.agent}>
+              {/* id={item._id} agent={item.agent} */}
               <GridListTileBar
                 title={`${item.name.first} ${item.name.last}`}
                 classes={{

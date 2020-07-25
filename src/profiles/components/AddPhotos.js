@@ -1,39 +1,29 @@
 import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import SaveIcon from "@material-ui/icons/Save";
 import { AuthContext } from "../../shared/context/AuthContext";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
+import ErrorBar from "../../shared/UI/ErrorBar";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-    },
-  },
   buttonGroup: {
     display: "flex",
-    width: "100%",
-    maxWidth: 300,
-    margin: `0 auto ${theme.spacing(1)}px`,
-  },
-  wideButton: {
-    flexGrow: 1,
-  },
 
+    margin: theme.spacing(1),
+  },
   input: {
     display: "none",
   },
-  button: {
-    margin: theme.spacing(1),
-    width: "100%",
-  },
 }));
 
-const AddPhotos = ({ profile, setError }) => {
+const AddPhotos = ({ profile, error, setError }) => {
   const classes = useStyles();
   const fileInput = React.createRef();
   const [isLoading, setIsLoading] = useState(false);
+
+  const clearError = () => {
+    setError(null);
+  };
   const { token } = useContext(AuthContext);
 
   const addPhotosHandler = async (e) => {
@@ -70,37 +60,35 @@ const AddPhotos = ({ profile, setError }) => {
     setIsLoading(false);
   };
   return (
-    <form
-      action="/profiles/:id/upload"
-      method="post"
-      encType="multipart/form-data"
-      className={classes.buttonGroup}
-      onSubmit={addPhotosHandler}
-    >
-      <input
-        accept=".jpg,.jpeg,.png"
-        name="photos"
-        id="files"
-        className={classes.input}
-        multiple
-        type="file"
-        ref={fileInput}
-      />
-
-      <label htmlFor="files" className={classes.wideButton}>
-        <Button
-          // variant="outlined"
-          // size="large"
-          component="span"
-          className={classes.button}
-        >
-          Add Photos
+    <React.Fragment>
+      <form
+        action="/profiles/:id/upload"
+        method="post"
+        encType="multipart/form-data"
+        className={classes.buttonGroup}
+        onSubmit={addPhotosHandler}
+      >
+        <input
+          accept=".jpg,.jpeg,.png"
+          name="photos"
+          id="files"
+          className={classes.input}
+          multiple
+          type="file"
+          ref={fileInput}
+        />
+        <label htmlFor="files">
+          <Button component="span">Add Photos</Button>
+        </label>
+        <Button type="submit" variant="outlined">
+          Send
         </Button>
-      </label>
-      <Button type="submit" variant="outlined">
-        Send
-      </Button>
-    </form>
+      </form>
+      {isLoading && <LoadingSpinner />}
+      {error && (
+        <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      )}
+    </React.Fragment>
   );
 };
 

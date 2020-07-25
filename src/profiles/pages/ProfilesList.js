@@ -7,6 +7,7 @@ import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
 const ProfilesList = () => {
   // const userId = useParams().userId;
+  // const { id } = useParams();
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

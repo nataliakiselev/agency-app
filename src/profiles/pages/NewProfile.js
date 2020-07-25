@@ -202,7 +202,7 @@ const NewProfile = () => {
           <Button
             type="submit"
             variant="contained"
-            // color="secondary"
+            color="primary"
             size="large"
             className={classes.button}
           >

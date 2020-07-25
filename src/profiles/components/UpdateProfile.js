@@ -203,7 +203,6 @@ const UpdateProfile = (props) => {
           placeholder={profile.notes}
           value={value.notes}
           onChange={handleChange}
-          // placeholder={profile.notes}
           variant="outlined"
           multiline
         />
@@ -212,7 +211,7 @@ const UpdateProfile = (props) => {
           <Button
             type="submit"
             variant="contained"
-            // color="secondary"
+            color="secondary"
             size="large"
             className={classes.button}
           >
@@ -220,6 +219,7 @@ const UpdateProfile = (props) => {
           </Button>
           <Button
             variant="contained"
+            color="primary"
             size="large"
             className={classes.button}
             onClick={props.onClick}
@@ -228,6 +228,7 @@ const UpdateProfile = (props) => {
           </Button>
           <Button
             variant="contained"
+            color="primary"
             size="large"
             className={classes.button}
             onClick={props.onClick}
@@ -238,9 +239,10 @@ const UpdateProfile = (props) => {
           </Button>
         </div>
       </form>
-      <UpdateCover profile={profile} setError={setError} />
-      <AddPhotos profile={profile} setError={setError} />
-
+      <div className={classes.formRow}>
+        <UpdateCover profile={profile} />
+        <AddPhotos profile={profile} />
+      </div>
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </div>
     // </PageGrid>

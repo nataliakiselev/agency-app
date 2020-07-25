@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 
 export const AuthContext = createContext({
   token: null,
@@ -9,6 +10,7 @@ export const AuthContext = createContext({
 });
 
 let logoutTimer;
+
 export const AuthProvider = (props) => {
   // const clearError = () => {
   //   setError(null);
@@ -18,7 +20,7 @@ export const AuthProvider = (props) => {
   const [userId, setUserId] = useState(false);
   const [token, setToken] = useState(false);
   const [tokenExpiry, setTokenExpiry] = useState();
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  let history = useHistory();
 
   const login = useCallback((uid, token, expiration) => {
     setToken(token);
@@ -41,6 +43,7 @@ export const AuthProvider = (props) => {
     setTokenExpiry(null);
     setUserId(null);
     localStorage.removeItem("user");
+    //  history.push("/");
   }, []);
 
   useEffect(() => {

@@ -110,10 +110,19 @@ const ProfilePage = () => {
             header="Are you sure?"
             footer={
               <React.Fragment>
-                <Button variant="contained" onClick={cancelDeleteHandler}>
+                <Button
+                  variant="outlined"
+                  onClick={cancelDeleteHandler}
+                  className={classes.button}
+                >
                   Cancel
                 </Button>
-                <Button variant="contained" onClick={confirmDeleteHandler}>
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  color="secondary"
+                  onClick={confirmDeleteHandler}
+                >
                   Delete
                 </Button>
               </React.Fragment>
@@ -128,13 +137,17 @@ const ProfilePage = () => {
           )}
         </React.Fragment>
       ) : (
-        <UpdateProfile profile={loadedProfile} onClick={handleCancel} />
+        <UpdateProfile profile={loadedProfile} cancelHandler={handleCancel} />
       )}
-      {/* {auth.user && viewMode && ( */}
+
       {/* userId=== agent */}
       {userId && viewMode && (
         <div className="profile-item__actions">
-          <Button className={classes.button} onClick={handleUpdate}>
+          <Button
+            className={classes.button}
+            onClick={handleUpdate}
+            variant="outlined"
+          >
             Edit
           </Button>
           <Button className={classes.button} onClick={showWarningHandler}>
