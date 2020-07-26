@@ -83,7 +83,7 @@ const ProfilePage = () => {
       });
 
       console.log(response);
-      // history.push(`/${auth.user._id}/profiles`);
+
       history.push(`/${userId}/profiles`);
       if (!response.ok) {
         throw new Error(response.message);
