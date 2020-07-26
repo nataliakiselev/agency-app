@@ -33,6 +33,10 @@ const ProfilePage = () => {
     setError(null);
   };
 
+  const cancelDeleteHandler = () => {
+    setShowConfirmModal(false);
+  };
+
   useEffect(() => {
     const doFetch = async () => {
       setError(null);
@@ -65,7 +69,7 @@ const ProfilePage = () => {
   const handleUpdate = () => {
     setViewMode(false);
   };
-  const handleCancel = () => {
+  const cancelHandler = () => {
     setViewMode(true);
   };
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -83,19 +87,16 @@ const ProfilePage = () => {
       });
 
       console.log(response);
-      // history.push(`/${auth.user._id}/profiles`);
-      history.push(`/${userId}/profiles`);
+
+      history.push(`/users/${userId}/profiles`);
       if (!response.ok) {
-        throw new Error(response.message);
+        throw new Error(response.message || response.statusText);
       }
     } catch (err) {
       console.log(err);
 
-      setError(err.message || "Something went wrong");
+      setError(err.message);
     }
-  };
-  const cancelDeleteHandler = () => {
-    setShowConfirmModal(false);
   };
 
   return (
@@ -137,11 +138,11 @@ const ProfilePage = () => {
           )}
         </React.Fragment>
       ) : (
-        <UpdateProfile profile={loadedProfile} cancelHandler={handleCancel} />
+        <UpdateProfile profile={loadedProfile} cancelHandler={cancelHandler} />
       )}
 
       {/* userId=== agent */}
-      {userId && viewMode && (
+      {loadedProfile && loadedProfile.agent === userId && viewMode && (
         <div className="profile-item__actions">
           <Button
             className={classes.button}

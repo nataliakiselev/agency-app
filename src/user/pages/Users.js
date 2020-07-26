@@ -19,7 +19,7 @@ const Users = () => {
         const response = await fetch("http://localhost:4000/api/users");
         const resJson = await response.json();
         if (!response.ok) {
-          throw new Error(resJson.message);
+          throw new Error(resJson.message || response.statusText);
         }
         console.log(resJson);
         setLoadedUsers(resJson.data);

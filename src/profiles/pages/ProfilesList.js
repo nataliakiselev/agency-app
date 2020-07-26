@@ -28,7 +28,7 @@ const ProfilesList = () => {
 
         const resJson = await response.json();
         if (!response.ok) {
-          throw new Error(resJson.message);
+          throw new Error(resJson.message || response.statusText);
         }
         console.log(resJson);
         setLoadedProfiles(resJson.data);

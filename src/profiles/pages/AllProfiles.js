@@ -43,7 +43,6 @@ const AllProfiles = () => {
       {!isLoading && loadedProfiles && (
         <ListTemplate profiles={loadedProfiles} />
       )}
-      ;
     </PageGrid>
   );
 };

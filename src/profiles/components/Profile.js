@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = ({ profile, profileId, setError }) => {
   const classes = useStyles();
-  const sm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  // const sm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const xs = useMediaQuery((theme) => theme.breakpoints.down("xs"));
 
   const { token, userId } = useContext(AuthContext);

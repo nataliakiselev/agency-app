@@ -56,7 +56,7 @@ const Auth = () => {
         const resJson = await response.json();
         console.log(resJson);
         if (!response.ok) {
-          throw new Error(resJson.message);
+          throw new Error(response.message || response.statusText);
         }
         console.log(resJson.userId);
         login(resJson.userId, resJson.token); //set user into state
@@ -83,12 +83,13 @@ const Auth = () => {
         const resJson = await response.json();
 
         if (!response.ok) {
-          throw new Error(resJson.message);
+          throw new Error(response.message || response.statusText);
         }
 
         console.log(resJson);
 
         login(resJson.userId, resJson.token);
+        history.push("/");
       } catch (err) {
         console.log(err);
 

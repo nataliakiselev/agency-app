@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -21,8 +21,8 @@ const App = () => {
   const token = useContext(AuthContext);
 
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <MainNav />
         <Switch>
           <Route exact path="/">
@@ -56,8 +56,8 @@ const App = () => {
           </Route>
           <Redirect to="/auth" />
         </Switch>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 };
 
