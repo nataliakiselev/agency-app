@@ -33,6 +33,10 @@ const ProfilePage = () => {
     setError(null);
   };
 
+  const cancelDeleteHandler = () => {
+    setShowConfirmModal(false);
+  };
+
   useEffect(() => {
     const doFetch = async () => {
       setError(null);
@@ -84,7 +88,7 @@ const ProfilePage = () => {
 
       console.log(response);
 
-      history.push(`/${userId}/profiles`);
+      history.push(`/users/${userId}/profiles`);
       if (!response.ok) {
         throw new Error(response.message || response.statusText);
       }
@@ -93,9 +97,6 @@ const ProfilePage = () => {
 
       setError(err.message);
     }
-  };
-  const cancelDeleteHandler = () => {
-    setShowConfirmModal(false);
   };
 
   return (
