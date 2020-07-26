@@ -46,10 +46,11 @@ const UpdateCover = ({ profile }) => {
         },
       );
       if (!response.ok) {
-        throw new Error(response.message);
+        console.log(response);
+        throw new Error(response.message || response.statusText);
       }
     } catch (err) {
-      console.log(err);
+      console.dir(err);
       setError(err.message || "Something went wrong");
     }
     setIsLoading(false);
