@@ -141,7 +141,7 @@ const ProfilePage = () => {
       )}
 
       {/* userId=== agent */}
-      {userId && viewMode && (
+      {loadedProfile && loadedProfile.agent === userId && viewMode && (
         <div className="profile-item__actions">
           <Button
             className={classes.button}
