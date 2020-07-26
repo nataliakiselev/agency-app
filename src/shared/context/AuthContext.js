@@ -43,8 +43,8 @@ export const AuthProvider = (props) => {
     setTokenExpiry(null);
     setUserId(null);
     localStorage.removeItem("user");
-    //  history.push("/");
-  }, []);
+    history.push("/");
+  }, [history]);
 
   useEffect(() => {
     if (token && tokenExpiry) {

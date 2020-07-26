@@ -65,7 +65,7 @@ const ProfilePage = () => {
   const handleUpdate = () => {
     setViewMode(false);
   };
-  const handleCancel = () => {
+  const cancelHandler = () => {
     setViewMode(true);
   };
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -86,12 +86,12 @@ const ProfilePage = () => {
 
       history.push(`/${userId}/profiles`);
       if (!response.ok) {
-        throw new Error(response.message);
+        throw new Error(response.message || response.statusText);
       }
     } catch (err) {
       console.log(err);
 
-      setError(err.message || "Something went wrong");
+      setError(err.message);
     }
   };
   const cancelDeleteHandler = () => {
@@ -137,11 +137,11 @@ const ProfilePage = () => {
           )}
         </React.Fragment>
       ) : (
-        <UpdateProfile profile={loadedProfile} cancelHandler={handleCancel} />
+        <UpdateProfile profile={loadedProfile} cancelHandler={cancelHandler} />
       )}
 
       {/* userId=== agent */}
-      {userId && viewMode && (
+      {loadedProfile && loadedProfile.agent === userId && viewMode && (
         <div className="profile-item__actions">
           <Button
             className={classes.button}

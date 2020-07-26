@@ -54,7 +54,7 @@ const NewProfile = () => {
         },
       });
       if (!response.ok) {
-        throw new Error(response.message);
+        throw new Error(response.message || response.statusText);
       }
       console.log(response);
       history.push("/");

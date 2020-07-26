@@ -51,7 +51,7 @@ const AddPhotos = ({ profile, error, setError }) => {
         },
       );
       if (!response.ok) {
-        throw new Error(response.message);
+        throw new Error(response.message || response.statusText);
       }
     } catch (err) {
       console.log(err);

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import PageGrid from "../../shared/UI/PageGrid";
+// import { useHistory } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { AuthContext } from "../../shared/context/AuthContext";
@@ -32,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: theme.spacing(1),
-    // width: "100%",
   },
 }));
 
@@ -40,11 +38,9 @@ const UpdateProfile = (props) => {
   const classes = useStyles();
   // const history = useHistory();
   const profile = props.profile;
-  // const auth = useContext(AuthContext);
   const { token } = useContext(AuthContext);
   // let { id } = useParams();
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
+
   const initialState = {
     height: "",
     bust: "",
@@ -101,7 +97,7 @@ const UpdateProfile = (props) => {
         },
       );
       if (!response.ok) {
-        throw new Error(response.message);
+        throw new Error(response.message || response.statusText);
       }
       console.log(response);
     } catch (err) {
@@ -112,7 +108,6 @@ const UpdateProfile = (props) => {
   };
 
   return (
-    // <PageGrid>
     <div className={classes.root}>
       {isLoading && <LoadingSpinner />}
       <h2>
@@ -222,7 +217,7 @@ const UpdateProfile = (props) => {
             color="primary"
             size="large"
             className={classes.button}
-            onClick={props.onClick}
+            onClick={props.cancelHandler}
           >
             Cancel
           </Button>
@@ -231,7 +226,7 @@ const UpdateProfile = (props) => {
             color="primary"
             size="large"
             className={classes.button}
-            onClick={props.onClick}
+            onClick={props.cancelHandler}
             // onClick={() => viewHandler(profile._id)}
             aria-label="view profile"
           >
@@ -245,7 +240,6 @@ const UpdateProfile = (props) => {
       </div>
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </div>
-    // </PageGrid>
   );
 };
 

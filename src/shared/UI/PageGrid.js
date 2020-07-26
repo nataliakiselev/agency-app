@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PageFrame(props) {
   const classes = useStyles();
-  let location = useLocation();
+  // let location = useLocation();
 
   return (
     <Container maxWidth="lg">
