@@ -1,3 +1,6 @@
+Initial version of a client side part of a full-stack MERN agency app complete with Auth. Updates and some refactoring in progress.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
