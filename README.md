@@ -1,5 +1,5 @@
 ## Description 
-This is the front-end of a full-stack (MERN) application. Written in react it makes use of router, react context (as the state management solution) and Auth with JWT. The back end can be found here: https://github.com/Nat-K/agency-app
+This is the front-end of a full-stack (MERN) application. Written in React it makes use of router, React context (as the state management solution) and Auth with JWT. The back end can be found here: https://github.com/Nat-K/agency-app
 
 ## Todo:
 hook forms with validation/ yup, refactor (to structure-based organisation; contexts) 
