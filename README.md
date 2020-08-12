@@ -6,6 +6,6 @@ hook forms with validation/ yup, refactor (to structure-based organisation; cont
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Author
+### Author
 
 👤 **Natalia Kiselev**
