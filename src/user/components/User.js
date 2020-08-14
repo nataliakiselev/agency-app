@@ -12,8 +12,8 @@ const User = (props) => {
             <Avatar image={props.image} alt={props.name} />
           </div> */}
           <div className="user-item__info">
-            <h2>{props.name}</h2>
-            <h3>{props.description}</h3>
+            <h2 style={{ textTransform: "capitalize" }}>{props.name}</h2>
+            <h3 style={{ textTransform: "capitalize" }}>{props.description}</h3>
             <p>{props.email}</p>
           </div>
         </Link>

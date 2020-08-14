@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  name: {
+    textTransform: "capitalize",
+  },
 }));
 
 const UpdateProfile = (props) => {
@@ -110,7 +113,7 @@ const UpdateProfile = (props) => {
   return (
     <div className={classes.root}>
       {isLoading && <LoadingSpinner />}
-      <h2>
+      <h2 className={classes.name}>
         {profile.name.first} {profile.name.last}
       </h2>
 

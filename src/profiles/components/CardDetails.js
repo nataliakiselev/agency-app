@@ -1,6 +1,11 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { CardContent, Typography, FormHelperText } from "@material-ui/core";
+import {
+  CardContent,
+  Typography,
+  FormHelperText,
+  capitalize,
+} from "@material-ui/core";
 import { AuthContext } from "../../shared/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -10,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     textAlign: "right",
+  },
+  name: {
+    textAlign: "right",
+    textTransform: "capitalize",
   },
   contact: {
     display: "flex",
@@ -23,7 +32,7 @@ const CardDetails = (profile) => {
   const classes = useStyles();
   return (
     <>
-      <Typography component="h4" variant="h4" className={classes.content}>
+      <Typography component="h4" variant="h4" className={classes.name}>
         {profile.name.first} {profile.name.last}
       </Typography>
       <div className={classes.root}>

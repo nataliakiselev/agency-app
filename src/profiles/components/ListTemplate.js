@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     color: theme.palette.contrastText,
+    textTransform: "capitalize",
   },
   titleBar: {
     background:
@@ -46,7 +47,6 @@ const ListTemplate = ({ profiles = [] }) => {
 
   return (
     <div className={classes.base}>
-      {/* <Grid container spacing={3} className={classes.gridList}> */}
       <GridList
         cellHeight={230}
         className={classes.gridList}

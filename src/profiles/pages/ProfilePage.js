@@ -71,6 +71,7 @@ const ProfilePage = () => {
   };
   const cancelHandler = () => {
     setViewMode(true);
+    //add fetch for refresh
   };
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const showWarningHandler = () => {
