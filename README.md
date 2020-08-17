@@ -6,6 +6,7 @@ There is also an option to create a new user which will be able to create and ha
 
 ## todo:
 
+host for demo
 hook forms with validation/ yup,
 complete profile update - profile page updated rendering
 codde splitting - suspense
