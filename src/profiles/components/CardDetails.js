@@ -60,10 +60,6 @@ const CardDetails = (profile) => {
           </CardContent>
         )}
         <CardContent className={classes.content}>
-          {/* <Typography component="h4" variant="h4">
-          {profile.name.first} {profile.name.last}
-        </Typography> */}
-
           <dl>
             <Typography component="dt" variant="h6">
               Height

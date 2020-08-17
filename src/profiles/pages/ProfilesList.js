@@ -7,7 +7,6 @@ import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 
 const ProfilesList = () => {
   // const userId = useParams().userId;
-  // const { id } = useParams();
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -23,7 +22,7 @@ const ProfilesList = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:4000/api/profiles/user/${id}`,
+          process.env.REACT_APP_SERVER_URL + `/profiles/user/${id}`,
         );
 
         const resJson = await response.json();

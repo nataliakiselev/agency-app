@@ -41,7 +41,7 @@ const AddPhotos = ({ profile, error, setError }) => {
       }
       console.log(Object.fromEntries(formData), "dataObj");
       const response = await fetch(
-        `http://localhost:4000/api/profiles/${profile._id}`,
+        process.env.REACT_APP_SERVER_URL + `/profiles/${profile._id}`,
         {
           method: "POST",
           body: formData,

@@ -52,17 +52,13 @@ const ListTemplate = ({ profiles = [] }) => {
         className={classes.gridList}
         cols={small ? 1 : widescreen ? 4 : 2}
       >
-        {/* <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
-          <ListSubheader component="div">Women Main</ListSubheader>
-        </GridListTile> */}
         {profiles.map((item) => (
           <GridListTile key={item._id}>
             <img
-              src={`http://localhost:4000/${item.mainImg}`}
+              src={process.env.REACT_APP_ASSETS_URL + `/${item.mainImg}`}
               alt={item.name.first}
             />
             <Link to={`/profiles/${item._id}`} id={item._id} agent={item.agent}>
-              {/* id={item._id} agent={item.agent} */}
               <GridListTileBar
                 title={`${item.name.first} ${item.name.last}`}
                 classes={{

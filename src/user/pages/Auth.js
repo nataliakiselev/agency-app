@@ -29,7 +29,7 @@ const Auth = () => {
 
   let history = useHistory();
   const { login } = useContext(AuthContext);
-  // console.log(userId);
+
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -40,21 +40,22 @@ const Auth = () => {
   const authSubmitHandler = async (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
-    // console.log(e.target, "form");
-    console.log(data, "data");
+
     setIsLoading(true);
     if (isLoginMode) {
       try {
-        const response = await fetch("http://localhost:4000/api/users/login", {
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          process.env.REACT_APP_SERVER_URL + "/users/login",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(data),
           },
-          method: "POST",
-          body: JSON.stringify(data),
-        });
+        );
 
         const resJson = await response.json();
-        console.log(resJson);
         if (!response.ok) {
           throw new Error(response.message || response.statusText);
         }
@@ -68,17 +69,19 @@ const Auth = () => {
         setError(err.message || "Something went wrong");
       } finally {
         setIsLoading(false);
-        // setLoaded("true");
       }
     } else {
       try {
-        const response = await fetch("http://localhost:4000/api/users/signup", {
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          process.env.REACT_APP_SERVER_URL + "/users/signup",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(data),
           },
-          method: "POST",
-          body: JSON.stringify(data),
-        });
+        );
 
         const resJson = await response.json();
 
@@ -96,7 +99,6 @@ const Auth = () => {
         setError(err.message || "Something went wrong");
       } finally {
         setIsLoading(false);
-        // setLoaded("true");
       }
     }
   };
