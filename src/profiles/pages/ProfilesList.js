@@ -17,7 +17,7 @@ const ProfilesList = () => {
   };
 
   useEffect(() => {
-    console.log(id, "userId");
+    // console.log(id, "userId");
     const doFetch = async () => {
       setIsLoading(true);
       try {

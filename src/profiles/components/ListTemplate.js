@@ -38,6 +38,7 @@ const ListTemplate = ({ profiles = [] }) => {
     return (
       <div>
         <h2> No profiles found. Create one?</h2>
+
         <Link to="/profiles/new">
           <button>Create Profile</button>
         </Link>

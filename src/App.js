@@ -18,7 +18,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import "./App.css";
 
 const App = () => {
-  const token = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
   return (
     <Router>
