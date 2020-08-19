@@ -12,11 +12,6 @@ export const AuthContext = createContext({
 let logoutTimer;
 
 export const AuthProvider = (props) => {
-  // const clearError = () => {
-  //   setError(null);
-  // };
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
   const [userId, setUserId] = useState(false);
   const [token, setToken] = useState(false);
   const [tokenExpiry, setTokenExpiry] = useState();

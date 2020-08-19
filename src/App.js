@@ -18,7 +18,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import "./App.css";
 
 const App = () => {
-  const token = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
   return (
     <Router>
@@ -37,13 +37,6 @@ const App = () => {
           <ProtectedRoute exact isAuthedUser={!!token} path="/profiles/new">
             <NewProfile />
           </ProtectedRoute>
-          {/* <ProtectedRoute
-        exact
-        isAuthedUser={isLoggedIn}
-        path="/profiles/:profileId/update"
-      >
-        <NewProfile />
-      </ProtectedRoute> */}
 
           <Route path="/profiles/:id">
             <ErrorBoundary>

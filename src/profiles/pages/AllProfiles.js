@@ -17,17 +17,14 @@ const AllProfiles = () => {
       setError(null);
       setIsLoading(true);
       try {
-        console.log("calling");
-        const response = await fetch(`http://localhost:4000/api/profiles`);
-        console.log("calling");
-
-        console.log(response);
+        const response = await fetch(
+          process.env.REACT_APP_SERVER_URL + "/profiles",
+        );
 
         const resJson = await response.json();
         if (!response.ok) {
           throw new Error(resJson.message);
         }
-        console.log(resJson);
         setLoadedProfiles(resJson.data);
       } catch (err) {
         setError(err.message);
