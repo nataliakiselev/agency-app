@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     color: theme.palette.contrastText,
+    textTransform: "capitalize",
   },
   titleBar: {
     background:
@@ -37,6 +38,7 @@ const ListTemplate = ({ profiles = [] }) => {
     return (
       <div>
         <h2> No profiles found. Create one?</h2>
+
         <Link to="/profiles/new">
           <button>Create Profile</button>
         </Link>
@@ -46,23 +48,18 @@ const ListTemplate = ({ profiles = [] }) => {
 
   return (
     <div className={classes.base}>
-      {/* <Grid container spacing={3} className={classes.gridList}> */}
       <GridList
         cellHeight={230}
         className={classes.gridList}
         cols={small ? 1 : widescreen ? 4 : 2}
       >
-        {/* <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
-          <ListSubheader component="div">Women Main</ListSubheader>
-        </GridListTile> */}
         {profiles.map((item) => (
           <GridListTile key={item._id}>
             <img
-              src={`http://localhost:4000/${item.mainImg}`}
+              src={process.env.REACT_APP_ASSETS_URL + `/${item.mainImg}`}
               alt={item.name.first}
             />
             <Link to={`/profiles/${item._id}`} id={item._id} agent={item.agent}>
-              {/* id={item._id} agent={item.agent} */}
               <GridListTileBar
                 title={`${item.name.first} ${item.name.last}`}
                 classes={{

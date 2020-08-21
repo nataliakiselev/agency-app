@@ -46,13 +46,16 @@ const NewProfile = () => {
 
       console.log(Object.fromEntries(data), "data");
 
-      const response = await fetch("http://localhost:4000/api/profiles", {
-        method: "POST",
-        body: data,
-        headers: {
-          Authorization: "Bearer " + token,
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + "/profiles",
+        {
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
         },
-      });
+      );
       if (!response.ok) {
         throw new Error(response.message || response.statusText);
       }

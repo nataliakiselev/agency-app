@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  name: {
+    textTransform: "capitalize",
+  },
 }));
 
 const UpdateProfile = (props) => {
@@ -65,17 +68,10 @@ const UpdateProfile = (props) => {
   console.log(value);
   const handleChange = (e) => {
     const { name, value: val } = e.target;
-    // console.log("name", name);
-    // console.log("value", val);
-    // console.log("original state", value);
     const newValues = { ...value, [name]: val };
-    // console.log("newValues", newValues);
     setValue(newValues);
-    // console.log("original changes", changes);
     const newChanges = { ...changes, [name]: val };
-    // console.log("newChanges", newChanges);
     setChanges(newChanges);
-    // console.log(value);
   };
   console.log(value);
   const submitHandler = async (e) => {
@@ -86,7 +82,7 @@ const UpdateProfile = (props) => {
       setIsLoading(true);
 
       const response = await fetch(
-        `http://localhost:4000/api/profiles/${profile._id}`,
+        process.env.REACT_APP_SERVER_URL + `/profiles/${profile._id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -110,7 +106,7 @@ const UpdateProfile = (props) => {
   return (
     <div className={classes.root}>
       {isLoading && <LoadingSpinner />}
-      <h2>
+      <h2 className={classes.name}>
         {profile.name.first} {profile.name.last}
       </h2>
 

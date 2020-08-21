@@ -43,7 +43,7 @@ const ProfilePage = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:4000/api/profiles/${id}`,
+          process.env.REACT_APP_SERVER_URL + `/profiles/${id}`,
         );
         console.log(id, "profileId");
         console.log(response);
@@ -71,6 +71,7 @@ const ProfilePage = () => {
   };
   const cancelHandler = () => {
     setViewMode(true);
+    //add fetch for refresh
   };
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const showWarningHandler = () => {
@@ -78,13 +79,16 @@ const ProfilePage = () => {
   };
   const confirmDeleteHandler = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/profiles/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + `/api/profiles/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          method: "DELETE",
         },
-        method: "DELETE",
-      });
+      );
 
       console.log(response);
 
@@ -141,7 +145,6 @@ const ProfilePage = () => {
         <UpdateProfile profile={loadedProfile} cancelHandler={cancelHandler} />
       )}
 
-      {/* userId=== agent */}
       {loadedProfile && loadedProfile.agent === userId && viewMode && (
         <div className="profile-item__actions">
           <Button

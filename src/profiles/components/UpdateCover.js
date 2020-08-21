@@ -36,7 +36,8 @@ const UpdateCover = ({ profile }) => {
 
       console.log(Object.fromEntries(data), "data");
       const response = await fetch(
-        `http://localhost:4000/api/profiles/${profile._id}/updatecover`,
+        process.env.REACT_APP_SERVER_URL +
+          `/profiles/${profile._id}/updatecover`,
         {
           method: "PUT",
           body: data,
@@ -77,14 +78,7 @@ const UpdateCover = ({ profile }) => {
         />
 
         <label htmlFor="file">
-          <Button
-            // variant="outlined"
-            // size="large"
-            component="span"
-            // className={classes.wideButton}
-          >
-            Change Cover
-          </Button>
+          <Button component="span">Change Cover</Button>
         </label>
         <Button type="submit" variant="outlined">
           Send

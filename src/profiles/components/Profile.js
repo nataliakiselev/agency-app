@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = ({ profile, profileId, setError }) => {
   const classes = useStyles();
-  // const sm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const xs = useMediaQuery((theme) => theme.breakpoints.down("xs"));
 
   const { token, userId } = useContext(AuthContext);
@@ -46,7 +45,8 @@ const Profile = ({ profile, profileId, setError }) => {
     try {
       console.log(profileId, "id");
       const response = await fetch(
-        `http://localhost:4000/api/profiles/${profileId}/photo/${photoId}`,
+        process.env.REACT_APP_SERVER_URL +
+          `/profiles/${profileId}/photo/${photoId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -78,13 +78,16 @@ const Profile = ({ profile, profileId, setError }) => {
         </GridListTile>
         <GridListTile cols={xs ? 2 : 1}>
           <img
-            src={`http://localhost:4000/${profile.mainImg}`}
+            src={process.env.REACT_APP_ASSETS_URL + `/${profile.mainImg}`}
             alt={`${profile.name.first} `}
           />
         </GridListTile>
         {photos.map((photo, i) => (
           <GridListTile key={i} cols={xs ? 2 : 1}>
-            <img src={`http://localhost:4000/${photo.path}`} alt={photo.name} />
+            <img
+              src={process.env.REACT_APP_ASSETS_URL + `/${photo.path}`}
+              alt={photo.name}
+            />
             {userId === profile.agent && (
               <Button
                 className={classes.delete}

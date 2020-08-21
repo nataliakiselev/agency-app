@@ -12,14 +12,12 @@ import MainNav from "./shared/Navigation/MainNav";
 import ProfilePage from "./profiles/pages/ProfilePage";
 import NewProfile from "./profiles/pages/NewProfile";
 import Auth from "./user/pages/Auth";
-import { AuthProvider, AuthContext } from "./shared/context/AuthContext";
+import { AuthProvider } from "./shared/context/AuthContext";
 import ErrorBoundary from "./ErrorBoundary";
 import ProtectedRoute from "./ProtectedRoute";
 import "./App.css";
 
 const App = () => {
-  const token = useContext(AuthContext);
-
   return (
     <Router>
       <AuthProvider>
@@ -34,21 +32,12 @@ const App = () => {
           <Route exact path="/users/:id/profiles">
             <ProfilesList />
           </Route>
-          <ProtectedRoute exact isAuthedUser={!!token} path="/profiles/new">
+          <ProtectedRoute exact path="/profiles/new">
             <NewProfile />
           </ProtectedRoute>
-          {/* <ProtectedRoute
-        exact
-        isAuthedUser={isLoggedIn}
-        path="/profiles/:profileId/update"
-      >
-        <NewProfile />
-      </ProtectedRoute> */}
 
           <Route path="/profiles/:id">
-            <ErrorBoundary>
-              <ProfilePage />
-            </ErrorBoundary>
+            <ProfilePage />
           </Route>
 
           <Route path="/auth">

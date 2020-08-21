@@ -13,15 +13,10 @@ import NavLinks from "./NavLinks";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-
-    // width: "100%",
     zIndex: 10,
   },
   appbar: {
     position: "sticky",
-    // [theme.breakpoints.down("xs")]: {
-    //   position: "fixed",
-    // },
   },
   bar: {
     [theme.breakpoints.down("md")]: {
