@@ -202,13 +202,13 @@ const UpdateProfile = (props) => {
           <Button
             type="submit"
             variant="contained"
-            color="secondary"
+            color="primary"
             size="large"
             className={classes.button}
           >
             Save
           </Button>
-          <Button
+          {/* <Button
             variant="contained"
             color="primary"
             size="large"
@@ -216,7 +216,7 @@ const UpdateProfile = (props) => {
             onClick={props.cancelHandler}
           >
             Cancel
-          </Button>
+          </Button> */}
           <Button
             variant="contained"
             color="primary"
