@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -7,6 +7,7 @@ import {
   GridListTileBar,
   useMediaQuery,
 } from "@material-ui/core";
+import { AuthContext } from "../../shared/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   base: {
@@ -30,18 +31,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListTemplate = ({ profiles = [] }) => {
+const ListTemplate = ({ profiles = [], userId }) => {
+  const { agentId } = useContext(AuthContext);
   const classes = useStyles();
   const small = useMediaQuery((theme) => theme.breakpoints.down("xs"));
   const widescreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
   if (!profiles.length) {
     return (
       <div>
-        <h2> No profiles found. Create one?</h2>
+        <h2> No profiles found. </h2>
+        {userId === agentId && (
+          <>
+            <h2>Create one?</h2>
 
-        <Link to="/profiles/new">
-          <button>Create Profile</button>
-        </Link>
+            <Link to="/profiles/new">
+              <button>Create Profile</button>
+            </Link>
+          </>
+        )}
       </div>
     );
   }

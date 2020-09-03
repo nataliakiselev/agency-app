@@ -48,7 +48,7 @@ const ProfilesList = () => {
     <PageGrid>
       {isLoading && <LoadingSpinner />}
       {!isLoading && loadedProfiles && (
-        <ListTemplate profiles={loadedProfiles} /> //onDeleteProfile={profileDeletedHandler}
+        <ListTemplate profiles={loadedProfiles} userId={id} /> //onDeleteProfile={profileDeletedHandler}
       )}
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </PageGrid>
