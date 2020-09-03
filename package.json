@@ -10,6 +10,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "eslint-plugin-react-hooks": "^4.0.4",
+    "global": "^4.4.0",
     "materialize-css": "^1.0.0-rc.2",
     "object-to-formdata": "^4.0.1",
     "react": "^16.13.1",
