@@ -22,7 +22,6 @@ const ProfilePage = () => {
   const { userId, token } = useContext(AuthContext);
 
   const { id } = useParams();
-  // const { agent } =
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -52,7 +51,7 @@ const ProfilePage = () => {
         if (!response.ok) {
           throw new Error(resJson.message);
         }
-        console.log(resJson);
+        // console.log(resJson);
 
         setLoadedProfile(resJson.data);
         setIsLoading(false);
@@ -90,7 +89,7 @@ const ProfilePage = () => {
         },
       );
 
-      console.log(response);
+      // console.log(response);
 
       history.push(`/users/${userId}/profiles`);
       if (!response.ok) {

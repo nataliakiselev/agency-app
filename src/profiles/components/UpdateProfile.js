@@ -109,7 +109,10 @@ const UpdateProfile = (props) => {
       <h2 className={classes.name}>
         {profile.name.first} {profile.name.last}
       </h2>
-
+      <div className={classes.formRow}>
+        <UpdateCover profile={profile} />
+        <AddPhotos profile={profile} />
+      </div>
       <form onSubmit={submitHandler} className={classes.form}>
         <TextField
           name="height"
@@ -205,6 +208,7 @@ const UpdateProfile = (props) => {
             color="primary"
             size="large"
             className={classes.button}
+            aria-label="save"
           >
             Save
           </Button>
@@ -230,10 +234,7 @@ const UpdateProfile = (props) => {
           </Button>
         </div>
       </form>
-      <div className={classes.formRow}>
-        <UpdateCover profile={profile} />
-        <AddPhotos profile={profile} />
-      </div>
+
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </div>
   );
