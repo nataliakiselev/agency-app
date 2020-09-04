@@ -212,7 +212,7 @@ const UpdateProfile = (props) => {
           >
             Save
           </Button>
-          {/* <Button
+          <Button
             variant="contained"
             color="primary"
             size="large"
@@ -220,13 +220,13 @@ const UpdateProfile = (props) => {
             onClick={props.cancelHandler}
           >
             Cancel
-          </Button> */}
+          </Button>
           <Button
             variant="contained"
             color="primary"
             size="large"
             className={classes.button}
-            onClick={props.cancelHandler}
+            onClick={props.viewHandler}
             // onClick={() => viewHandler(profile._id)}
             aria-label="view profile"
           >

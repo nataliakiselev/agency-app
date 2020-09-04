@@ -70,7 +70,31 @@ const ProfilePage = () => {
   };
   const cancelHandler = () => {
     setViewMode(true);
-    //add fetch for refresh
+  };
+
+  const viewHandler = async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + `/profiles/${id}`,
+      );
+      console.log(id, "profileId");
+      console.log(response);
+      // console.log("user", userId);
+      const resJson = await response.json();
+      if (!response.ok) {
+        throw new Error(resJson.message);
+      }
+      // console.log(resJson);
+
+      setLoadedProfile(resJson.data);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      setError(err.message);
+    }
+    setViewMode(true);
   };
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const showWarningHandler = () => {
@@ -141,7 +165,11 @@ const ProfilePage = () => {
           )}
         </React.Fragment>
       ) : (
-        <UpdateProfile profile={loadedProfile} cancelHandler={cancelHandler} />
+        <UpdateProfile
+          profile={loadedProfile}
+          cancelHandler={cancelHandler}
+          viewHandler={viewHandler}
+        />
       )}
 
       {loadedProfile && loadedProfile.agent === userId && viewMode && (
