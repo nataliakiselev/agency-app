@@ -5,11 +5,15 @@ To test the whole spectrum of the app functionality login is necessary (logged-i
 To create a new user the "register" option should be used from the login menu.
 Logged in user will have access to the private information of the profiles from his portfolio, and to options to edit prfoile's data and main image, add or delete gallery images, delete or add new profiles.
 
+At the moment new images upload is not fully supported for live demo (Heroku free version used for backend), soon to be fixed.
+
 Deployed to Firebase (Node backend hosted on Heroku):
 
 ### ✨ [Demo](https://agency-app-react.web.app)
 
 ## todo:
+
+image optimisation(jimp)
 
 hook forms with validation/ yup,
 minimize code using custome hooks and context,
