@@ -6,7 +6,7 @@ import {
   useMediaQuery,
   Button,
 } from "@material-ui/core";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import DeleteOutlineTwoToneIcon from "@material-ui/icons/DeleteOutlineTwoTone";
 import { AuthContext } from "../../shared/context/AuthContext";
 import CardDetails from "./CardDetails";
 
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: 0,
     top: 0,
+    color: theme.palette.primary.light,
   },
 }));
 
@@ -94,7 +95,7 @@ const Profile = ({ profile, profileId, setError }) => {
                 onClick={() => deletePhoto(photo._id)}
                 aria-label="delete photo"
               >
-                <DeleteOutlineIcon />
+                <DeleteOutlineTwoToneIcon />
               </Button>
             )}
           </GridListTile>
