@@ -79,8 +79,8 @@ const ProfilePage = () => {
       const response = await fetch(
         process.env.REACT_APP_SERVER_URL + `/profiles/${id}`,
       );
-      console.log(id, "profileId");
-      console.log(response);
+      // console.log(id, "profileId");
+      // console.log(response);
       // console.log("user", userId);
       const resJson = await response.json();
       if (!response.ok) {
@@ -103,7 +103,7 @@ const ProfilePage = () => {
   const confirmDeleteHandler = async () => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_SERVER_URL + `/api/profiles/${id}`,
+        process.env.REACT_APP_SERVER_URL + `/profiles/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
