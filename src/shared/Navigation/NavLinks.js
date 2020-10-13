@@ -5,11 +5,11 @@ import { List, ListItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  button: {
-    color: "inherit",
-    textTransform: "uppercase",
-    margin: theme.spacing(1),
-  },
+  // button: {
+  //   color: "inherit",
+  //   textTransform: "uppercase",
+  //   margin: theme.spacing(1),
+  // },
   root: {
     display: "flex",
     listStyle: "none",
@@ -32,7 +32,7 @@ const NavLinks = (props) => {
     <List className={classes.root}>
       <ListItem button>
         <NavLink to="/" exact>
-          Talent {/* text should be lowercase and uppercased with CSS */}
+          Talent
         </NavLink>
       </ListItem>
       <ListItem button>
