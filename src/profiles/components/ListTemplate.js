@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+
 import {
   GridList,
   GridListTile,
@@ -28,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
   titleBar: {
     background:
       "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+  },
+  image: {
+    width: "100%",
+    height: "auto",
   },
 }));
 
@@ -61,9 +66,14 @@ const ListTemplate = ({ profiles = [], userId }) => {
         cols={small ? 1 : widescreen ? 4 : 2}
       >
         {profiles.map((item) => (
-          <GridListTile key={item._id}>
+          <GridListTile key={item._id} imgFullWidth>
             <img
-              src={process.env.REACT_APP_ASSETS_URL + `/${item.mainImg}`}
+              className={classes.image}
+              src={
+                item.mainImg.startsWith("https")
+                  ? `${item.mainImg}`
+                  : process.env.REACT_APP_ASSETS_URL + `/${item.mainImg}`
+              }
               alt={item.name.first}
             />
             <Link to={`/profiles/${item._id}`} id={item._id} agent={item.agent}>

@@ -42,6 +42,7 @@ const Profile = ({ profile, profileId, setError }) => {
 
   const profilePhotos = profile.photos;
   const [photos, setPhotos] = useState(profilePhotos);
+
   const deletePhoto = async (photoId) => {
     try {
       console.log(profileId, "id");
@@ -71,6 +72,8 @@ const Profile = ({ profile, profileId, setError }) => {
       setError(err.message || "Something went wrong");
     }
   };
+  const mainImg = profile.mainImg;
+
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cellHeight={550}>
@@ -79,14 +82,22 @@ const Profile = ({ profile, profileId, setError }) => {
         </GridListTile>
         <GridListTile cols={xs ? 2 : 1}>
           <img
-            src={process.env.REACT_APP_ASSETS_URL + `/${profile.mainImg}`}
+            src={
+              mainImg.startsWith("https")
+                ? `${mainImg}`
+                : process.env.REACT_APP_ASSETS_URL + `/${profile.mainImg}`
+            }
             alt={`${profile.name.first} `}
           />
         </GridListTile>
         {photos.map((photo, i) => (
           <GridListTile key={i} cols={xs ? 2 : 1}>
             <img
-              src={process.env.REACT_APP_ASSETS_URL + `/${photo.path}`}
+              src={
+                photo.path.startsWith("https")
+                  ? `${photo.path}`
+                  : process.env.REACT_APP_ASSETS_URL + `/${photo.path}`
+              }
               alt={photo.name}
             />
             {userId === profile.agent && (

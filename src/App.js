@@ -13,7 +13,7 @@ import ProfilePage from "./profiles/pages/ProfilePage";
 import NewProfile from "./profiles/pages/NewProfile";
 import Auth from "./user/pages/Auth";
 import { AuthProvider } from "./shared/context/AuthContext";
-import ErrorBoundary from "./ErrorBoundary";
+// import ErrorBoundary from "./ErrorBoundary";
 import ProtectedRoute from "./ProtectedRoute";
 import "./App.css";
 
