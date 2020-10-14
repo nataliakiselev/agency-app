@@ -66,7 +66,7 @@ const ListTemplate = ({ profiles = [], userId }) => {
         cols={small ? 1 : widescreen ? 4 : 2}
       >
         {profiles.map((item) => (
-          <GridListTile key={item._id} imgFullWidth>
+          <GridListTile key={item._id}>
             <img
               className={classes.image}
               src={
