@@ -1,11 +1,6 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  CardContent,
-  Typography,
-  FormHelperText,
-  capitalize,
-} from "@material-ui/core";
+import { CardContent, Typography } from "@material-ui/core";
 import { AuthContext } from "../../shared/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({

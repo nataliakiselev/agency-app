@@ -1,11 +1,10 @@
 ## Description
 
 This is the front-end of a full-stack (MERN) application. Written in React, it makes use of router, React context (as the state management solution) and Auth with JWT. The back end can be found here: https://github.com/Nat-K/agency-app .
-To test the whole spectrum of the app functionality login is necessary (logged-in users can add new profiles, and profile owner (agent) can edit or delete a profile). An agent login for test demo: email: test@img.com, password: test1111
-To create a new user the "register" option should be used from the login menu.
-Logged in user will have access to the private information of the profiles from his portfolio, and to options to edit prfoile's data and main image, add or delete gallery images, delete or add new profiles.
 
-At the moment new images upload is not fully supported for live demo (Heroku free version used for backend), soon to be fixed.
+To test the whole spectrum of the app functionality login is necessary. Logged in user will have access to his own profiles portfolio view, private information on his own profiles, and to options to edit prfoile's data and main image, add (multipart/form-data) or delete gallery images, delete and create profiles.
+Test login for live demo: email: test@img.com, password: test1111
+To create a new user/login, choose "register" option from the login menu.
 
 Deployed to Firebase (Node backend hosted on Heroku):
 
