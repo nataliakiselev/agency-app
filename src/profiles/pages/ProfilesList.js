@@ -46,7 +46,8 @@ const ProfilesList = () => {
   //     );
   return (
     <PageGrid>
-      {isLoading && <LoadingSpinner />}
+      {/* {isLoading && <LoadingSpinner />} */}
+      <LoadingSpinner open={isLoading} />
       {!isLoading && loadedProfiles && (
         <ListTemplate profiles={loadedProfiles} userId={id} /> //onDeleteProfile={profileDeletedHandler}
       )}

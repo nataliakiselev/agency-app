@@ -105,7 +105,8 @@ const UpdateProfile = (props) => {
 
   return (
     <div className={classes.root}>
-      {isLoading && <LoadingSpinner />}
+      {/* {isLoading && <LoadingSpinner />} */}
+      <LoadingSpinner open={isLoading} />
       <h2 className={classes.name}>
         {profile.name.first} {profile.name.last}
       </h2>
@@ -234,7 +235,6 @@ const UpdateProfile = (props) => {
           </Button>
         </div>
       </form>
-
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </div>
   );

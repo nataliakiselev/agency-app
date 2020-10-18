@@ -107,7 +107,8 @@ const Auth = () => {
   };
   return (
     <Card className="authentication">
-      {isLoading && <LoadingSpinner />}
+      {/* {isLoading && <LoadingSpinner />} */}
+      <LoadingSpinner open={isLoading} />
       <h2>Login Required</h2>
       <hr />
       <form className={classes.root} onSubmit={authSubmitHandler}>

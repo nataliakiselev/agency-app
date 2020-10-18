@@ -8,10 +8,11 @@ import {
 import AllProfiles from "./profiles/pages/AllProfiles";
 import Users from "./user/pages/Users";
 import ProfilesList from "./profiles/pages/ProfilesList";
-import MainNav from "./shared/Navigation/MainNav";
+import MainNav from "./Navigation/MainNav";
 import ProfilePage from "./profiles/pages/ProfilePage";
 import NewProfile from "./profiles/pages/NewProfile";
 import Auth from "./user/pages/Auth";
+import Footer from "./Footer";
 import { AuthProvider } from "./shared/context/AuthContext";
 // import ErrorBoundary from "./ErrorBoundary";
 import ProtectedRoute from "./ProtectedRoute";
@@ -46,6 +47,7 @@ const App = () => {
           <Redirect to="/auth" />
         </Switch>
       </AuthProvider>
+      <Footer />
     </Router>
   );
 };

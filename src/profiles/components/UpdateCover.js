@@ -75,6 +75,7 @@ const UpdateCover = ({ profile }) => {
           className={classes.input}
           type="file"
           ref={fileInput}
+          required
         />
 
         <label htmlFor="file">

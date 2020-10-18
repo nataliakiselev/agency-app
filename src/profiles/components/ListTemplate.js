@@ -39,8 +39,10 @@ const useStyles = makeStyles((theme) => ({
 const ListTemplate = ({ profiles = [], userId }) => {
   const { agentId } = useContext(AuthContext);
   const classes = useStyles();
-  const small = useMediaQuery((theme) => theme.breakpoints.down("xs"));
-  const widescreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
+  const xsmall = useMediaQuery((theme) => theme.breakpoints.down("xs"));
+  const small = useMediaQuery((theme) => theme.breakpoints.between(678, 960));
+  const medium = useMediaQuery((theme) => theme.breakpoints.between(600, 960));
+
   if (!profiles.length) {
     return (
       <div>
@@ -61,9 +63,10 @@ const ListTemplate = ({ profiles = [], userId }) => {
   return (
     <div className={classes.base}>
       <GridList
-        cellHeight={230}
+        cellHeight={xsmall ? 350 : small ? 280 : 230}
+        cols={xsmall ? 1 : medium ? 2 : 4}
+        spacing={24}
         className={classes.gridList}
-        cols={small ? 1 : widescreen ? 4 : 2}
       >
         {profiles.map((item) => (
           <GridListTile key={item._id}>

@@ -6,12 +6,16 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    paddingTop: 130,
-    [theme.breakpoints.up("sm")]: {
-      maxWidth: "90%",
+    paddingTop: 64,
+    [theme.breakpoints.down("md")]: {
+      paddingTop: 130,
     },
+
     [theme.breakpoints.up("md")]: {
       maxWidth: "80%",
+    },
+    [theme.breakpoints.up("xs")]: {
+      maxWidth: "90%",
     },
     margin: "auto",
   },
@@ -23,7 +27,7 @@ export default function PageFrame(props) {
 
   return (
     <Container maxWidth="lg">
-      <Grid container className={classes.root} spacing={2}>
+      <Grid container className={classes.root}>
         <Grid item xs={12}>
           {props.children}
         </Grid>

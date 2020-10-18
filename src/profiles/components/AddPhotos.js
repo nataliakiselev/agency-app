@@ -30,7 +30,8 @@ const AddPhotos = ({ profile, error, setError }) => {
     e.preventDefault();
     e.persist();
     const files = fileInput.current.files;
-
+    if (!files) {
+    }
     console.log(files);
     try {
       setIsLoading(true);
@@ -76,6 +77,7 @@ const AddPhotos = ({ profile, error, setError }) => {
           multiple
           type="file"
           ref={fileInput}
+          required
         />
         <label htmlFor="files">
           <Button component="span">Add Photos</Button>
@@ -84,7 +86,8 @@ const AddPhotos = ({ profile, error, setError }) => {
           Send
         </Button>
       </form>
-      {isLoading && <LoadingSpinner />}
+      {/* {isLoading && <LoadingSpinner />} */}
+      <LoadingSpinner open={isLoading} />
       {error && (
         <ErrorBar error={error} errorMessage={error} onClear={clearError} />
       )}

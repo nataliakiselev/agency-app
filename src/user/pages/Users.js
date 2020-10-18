@@ -37,7 +37,7 @@ const Users = () => {
 
   return (
     <>
-      {isLoading && <LoadingSpinner />}
+      {isLoading && <LoadingSpinner open={isLoading} />}
       {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </>
