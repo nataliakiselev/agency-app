@@ -15,10 +15,17 @@ import WarningModal from "./shared/UI/WarningModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    paddingTop: 50,
+    paddingBottom: 20,
+  },
+  list: {
     display: "flex",
     listStyle: "none",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: "column",
+    [theme.breakpoints.up("sm")]: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
   },
 }));
 
@@ -40,14 +47,12 @@ const Footer = () => {
       <Box pt={2}>
         Images used in this repository are for demo purposes only.
       </Box>
-      <Box pb={5}>
-        Some of them are not my own and I hold no rights to them.
-      </Box>
+      <Box pb={5}>They are not my own and I hold no rights to them.</Box>
     </Typography>
   );
 
   return (
-    <PageGrid>
+    <div className={classes.root}>
       <Divider variant="middle" />
       <WarningModal
         open={showConfirmModal}
@@ -55,9 +60,12 @@ const Footer = () => {
         header="Disclaimer"
         children={body}
       />
-      <List className={classes.root}>
+      <List className={classes.list}>
         <ListItemLink href="https://github.com/nataliakiselev">
-          <ListItemText primary="Ⓒ 2020 NATALIA KISELEV" />
+          <ListItemText
+            style={{ textAlign: "center" }}
+            primary="Ⓒ 2020 NATALIA KISELEV"
+          />
         </ListItemLink>
         <ListItem
           button
@@ -67,10 +75,10 @@ const Footer = () => {
           <ListItemText primary="DISCLAIMER" />
         </ListItem>
         <ListItemLink href="#footer">
-          <ListItemText style={{ textAlign: "right" }} primary="CONTACT US" />
+          <ListItemText style={{ textAlign: "center" }} primary="CONTACT US" />
         </ListItemLink>
       </List>
-    </PageGrid>
+    </div>
   );
 };
 
