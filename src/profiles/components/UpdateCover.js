@@ -57,8 +57,8 @@ const UpdateCover = ({ profile }) => {
   };
   return (
     <>
-      {/* {isLoading && <LoadingSpinner />} */}
-      <LoadingSpinner open={isLoading} />
+      {isLoading && <LoadingSpinner open={isLoading} />}
+
       {error && (
         <ErrorBar error={error} errorMessage={error} onClear={clearError} />
       )}

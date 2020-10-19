@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
   },
   root: {
-    margin: `0 auto ${theme.spacing(1)}`,
+    marginTop: "auto",
     padding: "1rem",
     width: "90%",
-    maxWidth: "40rem",
+    // maxWidth: "40rem",
     borderRadius: "6px",
     background: "white",
   },
@@ -105,8 +105,8 @@ const UpdateProfile = (props) => {
 
   return (
     <div className={classes.root}>
-      {/* {isLoading && <LoadingSpinner />} */}
-      <LoadingSpinner open={isLoading} />
+      {isLoading && <LoadingSpinner open={isLoading} />}
+
       <h2 className={classes.name}>
         {profile.name.first} {profile.name.last}
       </h2>
@@ -235,7 +235,9 @@ const UpdateProfile = (props) => {
           </Button>
         </div>
       </form>
-      <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      {error && (
+        <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      )}
     </div>
   );
 };

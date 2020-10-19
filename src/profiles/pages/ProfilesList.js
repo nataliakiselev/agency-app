@@ -46,12 +46,13 @@ const ProfilesList = () => {
   //     );
   return (
     <PageGrid>
-      {/* {isLoading && <LoadingSpinner />} */}
       {isLoading && <LoadingSpinner open={isLoading} />}
       {!isLoading && loadedProfiles && (
         <ListTemplate profiles={loadedProfiles} userId={id} /> //onDeleteProfile={profileDeletedHandler}
       )}
-      <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      {error && (
+        <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      )}
     </PageGrid>
   );
 };

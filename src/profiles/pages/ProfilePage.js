@@ -128,8 +128,10 @@ const ProfilePage = () => {
 
   return (
     <PageGrid>
-      <LoadingSpinner open={isLoading} />
-      <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      {isLoading && <LoadingSpinner open={isLoading} />}
+      {error && (
+        <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      )}
       {viewMode ? (
         <React.Fragment>
           <WarningModal

@@ -38,8 +38,11 @@ const Users = () => {
   return (
     <>
       {isLoading && <LoadingSpinner open={isLoading} />}
+
+      {error && (
+        <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      )}
       {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
-      <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </>
   );
 };

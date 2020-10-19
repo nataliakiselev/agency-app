@@ -35,7 +35,7 @@ const AllProfiles = () => {
   }, []);
   return (
     <PageGrid>
-      {isLoading && <LoadingSpinner />}
+      {isLoading && <LoadingSpinner open={isLoading} />}
       <ErrorBar error={error} errorMessage={error} onClear={clearError} />
       {!isLoading && loadedProfiles && (
         <ListTemplate profiles={loadedProfiles} />

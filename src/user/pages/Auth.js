@@ -107,8 +107,11 @@ const Auth = () => {
   };
   return (
     <Card className="authentication">
-      {/* {isLoading && <LoadingSpinner />} */}
-      <LoadingSpinner open={isLoading} />
+      {isLoading && <LoadingSpinner open={isLoading} />}
+
+      {error && (
+        <ErrorBar error={error} errorMessage={error} onClear={clearError} />
+      )}
       <h2>Login Required</h2>
       <hr />
       <form className={classes.root} onSubmit={authSubmitHandler}>
@@ -160,8 +163,6 @@ const Auth = () => {
           Switch to {isLoginMode ? "Register" : "Login"}
         </Button>
       </form>
-
-      <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </Card>
   );
 };

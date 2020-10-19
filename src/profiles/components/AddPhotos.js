@@ -86,8 +86,7 @@ const AddPhotos = ({ profile, error, setError }) => {
           Send
         </Button>
       </form>
-      {/* {isLoading && <LoadingSpinner />} */}
-      <LoadingSpinner open={isLoading} />
+      {isLoading && <LoadingSpinner open={isLoading} />}
       {error && (
         <ErrorBar error={error} errorMessage={error} onClear={clearError} />
       )}
