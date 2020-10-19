@@ -42,7 +42,7 @@ const ListTemplate = ({ profiles = [], userId }) => {
   const xsmall = useMediaQuery((theme) => theme.breakpoints.down("xs"));
   const small = useMediaQuery((theme) => theme.breakpoints.between(678, 960));
   const medium = useMediaQuery((theme) => theme.breakpoints.between(600, 960));
-
+  const matches = useMediaQuery("(min-width:1280px)");
   if (!profiles.length) {
     return (
       <div>

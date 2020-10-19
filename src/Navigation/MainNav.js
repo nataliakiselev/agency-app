@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
     position: "sticky",
   },
   bar: {
-    [theme.breakpoints.down("md")]: {
-      height: 130,
-    },
+    // [theme.breakpoints.down("md")]: {
+    height: 130,
+    // },
   },
   menuButton: {
     marginRight: theme.spacing(2),

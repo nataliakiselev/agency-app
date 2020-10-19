@@ -80,7 +80,7 @@ const UpdateCover = ({ profile }) => {
         />
 
         <label htmlFor="file">
-          <Button component="span">Change Cover</Button>
+          <Button component="span">Change Cover </Button>
         </label>
         <Button type="submit" variant="outlined">
           Send
