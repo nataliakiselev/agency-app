@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bar: {
     // [theme.breakpoints.down("md")]: {
-    height: 130,
+    height: 100,
     // },
   },
   menuButton: {

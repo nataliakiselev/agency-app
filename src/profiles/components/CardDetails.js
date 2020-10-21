@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 const CardDetails = (profile) => {
   const { userId } = useContext(AuthContext);
   const classes = useStyles();
+
   return (
     <>
       <Typography component="h4" variant="h4" className={classes.name}>
@@ -91,9 +92,6 @@ const CardDetails = (profile) => {
             </Typography>
             <Typography component="dd" variant="h5">
               {profile.hair}
-            </Typography>
-            <Typography component="dt" variant="h6">
-              Eyes
             </Typography>
             <Typography component="dd" variant="h5">
               {profile.eyes}
