@@ -229,9 +229,9 @@ const UpdateProfile = (props) => {
             className={classes.button}
             onClick={props.viewHandler}
             // onClick={() => viewHandler(profile._id)}
-            aria-label="view profile"
+            aria-label="view"
           >
-            View Profile
+            View
           </Button>
         </div>
       </form>

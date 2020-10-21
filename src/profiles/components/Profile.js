@@ -80,7 +80,7 @@ const Profile = ({ profile, profileId, setError }) => {
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cellHeight={550}>
+      <GridList className={classes.gridList} cellHeight={630}>
         <GridListTile cols={xs ? 2 : 1}>
           <CardDetails {...profile} />
         </GridListTile>

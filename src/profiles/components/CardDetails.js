@@ -7,13 +7,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "flex-end",
+    alignItems: "center",
   },
   content: {
+    paddingTop: "24px",
     textAlign: "right",
   },
   name: {
     textAlign: "right",
     textTransform: "capitalize",
+    paddingRight: "16px",
   },
   contact: {
     display: "flex",
@@ -31,6 +34,7 @@ const CardDetails = (profile) => {
       <Typography component="h4" variant="h4" className={classes.name}>
         {profile.name.first} {profile.name.last}
       </Typography>
+
       <div className={classes.root}>
         {userId === profile.agent && (
           <CardContent component="dl" className={classes.contact}>

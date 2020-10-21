@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 // import InstagramIcon from "@material-ui/icons/Instagram";
-import PageGrid from "./shared/UI/PageGrid";
 import WarningModal from "./shared/UI/WarningModal";
 
 const useStyles = makeStyles((theme) => ({
