@@ -63,7 +63,7 @@ const ListTemplate = ({ profiles = [], userId }) => {
   return (
     <div className={classes.base}>
       <GridList
-        cellHeight={xsmall ? 350 : small ? 280 : 230}
+        cellHeight={xsmall ? 350 : small ? 300 : 230}
         cols={xsmall ? 1 : medium ? 2 : 4}
         spacing={24}
         className={classes.gridList}
