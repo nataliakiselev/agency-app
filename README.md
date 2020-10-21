@@ -1,6 +1,6 @@
 ## Description
 
-This is the front-end of a full-stack (MERN) application. Written in React, it makes use of router, React context (as the state management solution) and Auth with JWT. The back end can be found here: https://github.com/Nat-K/agency-app .
+This is the front-end of a full-stack (MERN) application. Written in React, it makes use of router, React context (as the state management solution) and Auth with JWT. The back end can be found here: https://github.com/nataliakiselev/agency-app-backend .
 
 To test the whole spectrum of the app functionality login is necessary. Logged in user will have access to his own profiles portfolio view, private information on his own profiles, and to options to edit prfoile's data and main image, add (multipart/form-data) or delete gallery images, delete and create profiles.
 Test login for live demo: email: test@img.com, password: test1111
