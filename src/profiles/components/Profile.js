@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: "translateZ(0)",
     [theme.breakpoints.up("lg")]: {
-      paddingTop: theme.spacing(10),
+      paddingTop: theme.spacing(4),
     },
-    paddingTop: theme.spacing(5),
+    paddingTop: theme.spacing(3),
   },
   delete: {
     position: "absolute",
@@ -80,7 +80,7 @@ const Profile = ({ profile, profileId, setError }) => {
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cellHeight={630}>
+      <GridList className={classes.gridList} cellHeight={570}>
         <GridListTile cols={xs ? 2 : 1}>
           <CardDetails {...profile} />
         </GridListTile>
