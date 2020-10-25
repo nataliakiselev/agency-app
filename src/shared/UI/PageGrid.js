@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     paddingTop: 100,
-
+    minHeight: 500,
     [theme.breakpoints.up("md")]: {
       maxWidth: "80%",
     },
