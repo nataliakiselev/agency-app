@@ -12,6 +12,8 @@ import CardDetails from "./CardDetails";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    width: "80%",
+    margin: "auto",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
@@ -80,12 +82,13 @@ const Profile = ({ profile, profileId, setError }) => {
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cellHeight={570}>
+      <GridList className={classes.gridList} cellHeight={500}>
         <GridListTile cols={xs ? 2 : 1}>
           <CardDetails {...profile} />
         </GridListTile>
         <GridListTile cols={xs ? 2 : 1}>
           <img
+            // className={classes.image}
             src={
               mainImg.startsWith("https")
                 ? `${mainImg}`
@@ -97,6 +100,7 @@ const Profile = ({ profile, profileId, setError }) => {
         {photos.map((photo, i) => (
           <GridListTile key={i} cols={xs ? 2 : 1}>
             <img
+              // className={classes.image}
               src={
                 photo.path.startsWith("https")
                   ? `${photo.path}`

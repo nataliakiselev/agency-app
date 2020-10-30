@@ -14,7 +14,7 @@ import WarningModal from "./shared/UI/WarningModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: 50,
+    marginTop: 80,
     paddingBottom: 20,
   },
   list: {
