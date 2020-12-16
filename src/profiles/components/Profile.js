@@ -88,7 +88,6 @@ const Profile = ({ profile, profileId, setError }) => {
         </GridListTile>
         <GridListTile cols={xs ? 2 : 1}>
           <img
-            // className={classes.image}
             src={
               mainImg.startsWith("https")
                 ? `${mainImg}`
@@ -100,7 +99,6 @@ const Profile = ({ profile, profileId, setError }) => {
         {photos.map((photo, i) => (
           <GridListTile key={i} cols={xs ? 2 : 1}>
             <img
-              // className={classes.image}
               src={
                 photo.path.startsWith("https")
                   ? `${photo.path}`

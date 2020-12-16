@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-around",
   },
-  root: {
+  formContainer: {
     marginTop: "auto",
     padding: "1rem",
     width: "90%",
@@ -104,7 +104,7 @@ const UpdateProfile = (props) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.formContainer}>
       {isLoading && <LoadingSpinner open={isLoading} />}
 
       <h2 className={classes.name}>

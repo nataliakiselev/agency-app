@@ -1,5 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorBar from "../../shared/UI/ErrorBar";
@@ -23,6 +26,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const schema = yup.object().shape({
+  name: yup.object({
+    first: yup
+      .string()
+      .matches(/^([^0-9]*)$/)
+      .required()
+      .min(2)
+      .max(10),
+    last: yup.string().required().min(1).max(15),
+  }),
+
+  email: yup.string().email().required(),
+});
 const NewProfile = () => {
   const classes = useStyles();
 
@@ -71,149 +87,147 @@ const NewProfile = () => {
 
   return (
     <PageGrid>
-      <div className="profile-form">
-        <form
-          encType="multipart/form-data"
-          className={classes.root}
-          action="/profiles"
-          method="POST"
-          onSubmit={submitHandler}
-        >
-          <TextField
-            required
-            id="firstName"
-            name="name.first"
-            label="First Name"
-            variant="outlined"
-          />
-          <TextField
-            id="lastName"
-            name="name.last"
-            label="Last Name"
-            variant="outlined"
-            required
-          />
-          <TextField
-            id="eyes"
-            name="eyes"
-            label="Eyes"
-            variant="outlined"
-            required
-          />
-          <TextField
-            id="hair"
-            name="hair"
-            label="Hair"
-            variant="outlined"
-            required
-          />
+      <form
+        // encType="multipart/form-data"
+        className={classes.root}
+        action="/profiles"
+        method="POST"
+        onSubmit={submitHandler}
+      >
+        <TextField
+          required
+          id="firstName"
+          name="name.first"
+          label="First Name"
+          variant="outlined"
+        />
+        <TextField
+          id="lastName"
+          name="name.last"
+          label="Last Name"
+          variant="outlined"
+          required
+        />
+        <TextField
+          id="eyes"
+          name="eyes"
+          label="Eyes"
+          variant="outlined"
+          required
+        />
+        <TextField
+          id="hair"
+          name="hair"
+          label="Hair"
+          variant="outlined"
+          required
+        />
 
-          <TextField
-            id="height"
-            name="height"
-            label="Height (cm)"
-            type="number"
-            variant="outlined"
-            required
-          />
-          <TextField
-            id="bust"
-            name="bust"
-            label="Bust"
-            type="number"
-            variant="outlined"
-            required
-          />
-          <TextField
-            id="waist"
-            name="waist"
-            label="Waist"
-            type="number"
-            variant="outlined"
-            required
-          />
+        <TextField
+          id="height"
+          name="height"
+          label="Height (cm)"
+          type="number"
+          variant="outlined"
+          required
+        />
+        <TextField
+          id="bust"
+          name="bust"
+          label="Bust"
+          type="number"
+          variant="outlined"
+          required
+        />
+        <TextField
+          id="waist"
+          name="waist"
+          label="Waist"
+          type="number"
+          variant="outlined"
+          required
+        />
 
-          <TextField
-            id="hips"
-            name="hips"
-            label="Hips"
-            type="number"
-            variant="outlined"
-            required
-          />
-          <TextField
-            id="shoes"
-            name="shoes"
-            label="Shoes"
-            type="number"
-            variant="outlined"
-            required
-          />
+        <TextField
+          id="hips"
+          name="hips"
+          label="Hips"
+          type="number"
+          variant="outlined"
+          required
+        />
+        <TextField
+          id="shoes"
+          name="shoes"
+          label="Shoes"
+          type="number"
+          variant="outlined"
+          required
+        />
 
-          <TextField
-            id="email"
-            name="email"
-            label="Email"
-            type="email"
-            variant="outlined"
-            required
-          />
-          <TextField
-            id="phone"
-            name="phone"
-            label="Phone"
-            type="tel"
-            variant="outlined"
-            required
-          />
+        <TextField
+          id="email"
+          name="email"
+          label="Email"
+          type="email"
+          variant="outlined"
+          required
+        />
+        <TextField
+          id="phone"
+          name="phone"
+          label="Phone"
+          type="tel"
+          variant="outlined"
+          required
+        />
 
-          <TextField
-            id="notes"
-            name="notes"
-            label="Notes"
-            variant="outlined"
-            multiline
-          />
-          {/* <TextField
+        <TextField
+          id="notes"
+          name="notes"
+          label="Notes"
+          variant="outlined"
+          multiline
+        />
+        {/* <TextField
           id="outlined-password-input"
           label="Password"
           type="password"
           autoComplete="current-password"
           variant="outlined"
         /> */}
-          <div>
-            <input
-              accept=".jpg,.jpeg,.png"
-              className={classes.input}
-              id="contained-button-file"
-              type="file"
-              name="mainImg"
-              // required
-            />
+        <div>
+          <input
+            accept=".jpg,.jpeg,.png"
+            className={classes.input}
+            id="contained-button-file"
+            type="file"
+            name="mainImg"
+            // required
+          />
 
-            <label htmlFor="contained-button-file">
-              <Button
-                className={classes.button}
-                variant="outlined"
-                size="large"
-                component="span"
-              >
-                Upload Photo
-              </Button>
-            </label>
-          </div>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.button}
-          >
-            Create Profile
-          </Button>
-        </form>
-        <ErrorBar error={error} errorMessage={error} onClear={clearError} />
-      </div>
+          <label htmlFor="contained-button-file">
+            <Button
+              className={classes.button}
+              variant="outlined"
+              size="large"
+              component="span"
+            >
+              Upload Photo
+            </Button>
+          </label>
+        </div>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.button}
+        >
+          Create Profile
+        </Button>
+      </form>
+      <ErrorBar error={error} errorMessage={error} onClear={clearError} />
     </PageGrid>
   );
 };
