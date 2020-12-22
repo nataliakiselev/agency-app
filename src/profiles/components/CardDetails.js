@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardContent, Typography } from "@material-ui/core";
-import { AuthContext } from "../../shared/context/AuthContext";
+import { AuthContext } from "../../shared/contexts/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,6 +96,9 @@ const CardDetails = (profile) => {
             </Typography>
             <Typography component="dd" variant="h5">
               {profile.hair}
+            </Typography>
+            <Typography component="dt" variant="h6">
+              Eyes
             </Typography>
             <Typography component="dd" variant="h5">
               {profile.eyes}

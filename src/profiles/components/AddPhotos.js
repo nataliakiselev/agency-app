@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { AuthContext } from "../../shared/context/AuthContext";
+import { AuthContext } from "../../shared/contexts/AuthContext";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 import ErrorBar from "../../shared/UI/ErrorBar";
 

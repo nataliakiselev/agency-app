@@ -13,7 +13,7 @@ import NavLinks from "./NavLinks";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    zIndex: 10,
+    //   zIndex: 1,
   },
   appbar: {
     position: "sticky",

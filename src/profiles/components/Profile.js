@@ -7,12 +7,15 @@ import {
   Button,
 } from "@material-ui/core";
 import DeleteOutlineTwoToneIcon from "@material-ui/icons/DeleteOutlineTwoTone";
-import { AuthContext } from "../../shared/context/AuthContext";
+import { AuthContext } from "../../shared/contexts/AuthContext";
 import CardDetails from "./CardDetails";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "80%",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
     margin: "auto",
     display: "flex",
     flexWrap: "wrap",
@@ -82,7 +85,7 @@ const Profile = ({ profile, profileId, setError }) => {
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cellHeight={500}>
+      <GridList className={classes.gridList} cellHeight={600}>
         <GridListTile cols={xs ? 2 : 1}>
           <CardDetails {...profile} />
         </GridListTile>

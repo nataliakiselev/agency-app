@@ -49,6 +49,7 @@ export const AuthProvider = (props) => {
       clearTimeout(logoutTimer);
     }
   }, [token, logout, tokenExpiry]);
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (

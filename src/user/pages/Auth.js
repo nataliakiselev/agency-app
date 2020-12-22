@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "../../shared/UI/Card";
-import { AuthContext } from "../../shared/context/AuthContext";
+import { AuthContext } from "../../shared/contexts/AuthContext";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 import ErrorBar from "../../shared/UI/ErrorBar";
 import "./Auth.css";
