@@ -7,7 +7,7 @@ import PageGrid from "../../shared/UI/PageGrid";
 import Profile from "../components/Profile";
 import UpdateProfile from "../components/UpdateProfile";
 import WarningModal from "../../shared/UI/WarningModal";
-import { AuthContext } from "../../shared/context/AuthContext";
+import { AuthContext } from "../../shared/contexts/AuthContext";
 import ErrorBar from "../../shared/UI/ErrorBar";
 import LoadingSpinner from "../../shared/UI/LoadingSpinner";
 

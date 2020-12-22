@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Redirect, Route } from "react-router";
-import { AuthContext } from './shared/context/AuthContext';
+import { AuthContext } from "./shared/contexts/AuthContext";
 
 const ProtectedRoute = (props) => {
   const { type = "private" } = props;
   const { token } = useContext(AuthContext);
   // if (type === "guest" && isAuthedUser) return <Redirect to="/home" />;
   // else
-  console.log('token', token);
+  console.log("token", token);
   if (type === "private" && !token) return <Redirect to="/login" />;
 
   return <Route {...props} />;
