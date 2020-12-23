@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    paddingTop: 15,
+    paddingTop: 10,
     backgroundColor: theme.palette.background.paper,
     // [theme.breakpoints.down("xs")]: {
     //   paddingTop: theme.spacing(7),
@@ -67,7 +67,6 @@ const ListTemplate = ({ profiles = [], userId }) => {
         cellHeight={xsmall ? 350 : small ? 300 : 230}
         cols={xsmall ? 1 : medium ? 2 : 4}
         spacing={24}
-        // className={classes.gridList}
       >
         {profiles.map((item) => (
           <GridListTile key={item._id}>
