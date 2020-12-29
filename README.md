@@ -5,6 +5,7 @@ This is the front-end of a full-stack (MERN) application. Written in React, it m
 To test the whole spectrum of the app functionality login is necessary. Logged in user will have access to his own profiles portfolio view, private information on his own profiles, and to options to edit prfoile's data and main image, add (multipart/form-data) or delete gallery images, delete and create profiles.
 Test login for live demo: email: test@img.com, password: test1111
 To create a new user/login, choose "register" option from the login menu.
+Currently in refactoring with react context and addding react-hook-form and yup validation, but functional.
 
 Deployed to Firebase (Node backend hosted on Heroku):
 
@@ -15,8 +16,8 @@ Deployed to Firebase (Node backend hosted on Heroku):
 image optimisation(jimp)
 
 hook forms with validation/ yup,
-minimize code using custome hooks and context,
-code splitting - suspense
+minimize code using custom hooks and context.
+
 
 ## Disclaimer
 
